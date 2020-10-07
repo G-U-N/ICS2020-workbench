@@ -21,7 +21,7 @@ uint64_t mod(uint64_t a, uint64_t m)
 
   while (a>=m)
   {
-    a-m;
+    a-=m;
   }
   return a;
   
