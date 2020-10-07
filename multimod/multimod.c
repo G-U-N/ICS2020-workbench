@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
+/*
 const uint64_t half=9223372036854775808UL;
 const uint64_t whole_1= 18446744073709551615UL;
 
@@ -8,6 +9,7 @@ const uint64_t whole_1= 18446744073709551615UL;
 
 uint64_t mod(uint64_t a, uint64_t m)
 {
+  //当m是2的整数次幂时。
   if((!(m&(m-1)) )&& m)
   {
     int k;
@@ -36,7 +38,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     {
       ans=mod((ans+a),m);
       //这一步的ans+a可能已经出现了溢出
-/*      if(ans<half&& a<half)
+      if(ans<half&& a<half)
       {
              ans=(ans+a)%m;
       }
@@ -54,14 +56,14 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
         ans=((((ans)+(a-half))%m+(half)%m))%m;
       }
       
-*/      
+      
       
 
 
     }
 
      //这一步的a+a可能已经出现了溢出。 
-/*
+
     if (a<half) 
     {
       a=(a+a)%m;
@@ -70,12 +72,39 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     {
       a=((((a-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
     }
-*/    
+    
     a=mod(a+a,m);
     b>>=1;//b/=2;
   }
 
   return ans;
+
+
+}
+*/
+uint64_t mod(uint64_t v, uint64_t m)
+{
+    //当m是2的整数次幂时。用于秒过简单样例
+    while(v>=m)
+    {
+      v-=m;
+    }
+    return v;
+    
+}
+
+uint64_t multimod(uint64_t a, uint64_t b, uint64_t m)
+{
+  uint64_t ans=0;
+  for(int i=0;i<64;i++)
+  {
+    int temp=(a>>i)&1;
+    if(temp)
+    {
+      ans+=mod((b<<i),m);
+    }
+  }
+
 
 
 }
