@@ -104,6 +104,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m)
       ans+=mod((b<<i),m);
     }
   }
+  return ans;
 
 
 
