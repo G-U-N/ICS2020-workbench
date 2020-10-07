@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 
+
 const uint64_t half=9223372036854775808UL;
 const uint64_t whole_1= 18446744073709551615UL;
 
