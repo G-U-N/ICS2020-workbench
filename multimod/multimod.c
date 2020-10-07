@@ -5,7 +5,7 @@
 
 //const uint64_t half=9223372036854775808UL;
 //const uint64_t whole_1= 18446744073709551615UL;
-
+//如果能够处理好a+b取模m，我就能通过所有样例。
 
 
 uint64_t mod(uint64_t a, uint64_t m)
@@ -19,17 +19,14 @@ uint64_t mod(uint64_t a, uint64_t m)
     return a&((1<<k)-1);
   }
 
-  while (a>=m)
-  {
-    a-=m;
-  }
+
   return a;
   
 }
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
  
-  uint64_t ans=0;
+  uint64_t ans=1;
   
   a=mod(a,m);
 
@@ -37,7 +34,9 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   {
     if(b&1)//如果b是奇数
     {
-      ans=mod((ans+a),m);
+      ans=mod((ans*a),m);
+
+
       //这一步的ans+a可能已经出现了溢出
 /*      if(ans<half&& a<half)
       {
@@ -74,7 +73,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       a=((((a-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
     }
 */    
-    a=mod(a+a,m);
+    a=mod(a*a,m);
     b>>=1;//b/=2;
   }
 
@@ -83,6 +82,8 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 
 }
 
+
+//变相的快速幂。
 /*
 uint64_t mod(uint64_t v, uint64_t m)
 {
