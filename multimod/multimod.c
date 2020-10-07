@@ -1,7 +1,7 @@
 #include <stdint.h>
 
-uint64_t half=9223372036854775808;
-uint64_t whole_1= 18446744073709551615;
+const uint64_t half=9223372036854775808;
+const uint64_t whole_1= 18446744073709551615;
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
  
