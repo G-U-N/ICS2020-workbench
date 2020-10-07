@@ -21,15 +21,18 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       }
       else if(ans>=half && a>=half)
       {
+        printf("%.d",1);
         ans=((((ans-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
         
       }
       else if (ans>=half)
       {
+        printf("%.d",2);
         ans=((((ans-half)+a)%m+(half)%m))%m;
       }
       else
       {
+        printf("%.d",3);
         ans=((((ans)+(a-half))%m+(half)%m))%m;
       }
       
