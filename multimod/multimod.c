@@ -39,7 +39,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     {
       ans=mod((ans+a),m);
       //这一步的ans+a可能已经出现了溢出
-      if(ans<half&& a<half)
+/*      if(ans<half&& a<half)
       {
              ans=(ans+a)%m;
       }
@@ -57,7 +57,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
         ans=((((ans)+(a-half))%m+(half)%m))%m;
       }
       
-      
+*/      
       
 
 
@@ -65,7 +65,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 
      //这一步的a+a可能已经出现了溢出。 
 
-    if (a<half) 
+/*    if (a<half) 
     {
       a=(a+a)%m;
     }
@@ -73,7 +73,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     {
       a=((((a-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
     }
-    
+*/    
     a=mod(a+a,m);
     b>>=1;//b/=2;
   }
