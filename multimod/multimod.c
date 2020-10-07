@@ -5,11 +5,20 @@ const uint64_t half=9223372036854775808UL;
 const uint64_t whole_1= 18446744073709551615UL;
 
 
+
 uint64_t mod(uint64_t a, uint64_t m)
 {
+  if((!(m&(m-1)) )&& m)
+  {
+    int k;
+    for( k=0;(k<64)&!((1<<k)&m);k++);
+
+    return a&((1<<k)-1);
+  }
+
   while (a>=m)
   {
-    a-=m;
+    a-m;
   }
   return a;
   
