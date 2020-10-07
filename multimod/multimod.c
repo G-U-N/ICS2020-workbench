@@ -25,7 +25,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
       }
       else
       {
-        printf("%.d",1)
+        printf("%.d",1);
       }
       
       
