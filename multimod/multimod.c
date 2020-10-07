@@ -1,7 +1,7 @@
 #include <stdint.h>
 
-#define half 9223372036854775808
-#define whole 18446744073709551616
+uint64_t half=9223372036854775808;
+uint64_t whole_1= 18446744073709551615;
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
  
@@ -26,7 +26,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     }
     else
     {
-      a=((a-half)+(a-half))%m+(whole-1)%m+1;
+      a=((a-half)+(a-half))%m+(whole_1)%m+1;
     }
     
     b>>=1;//b/=2;
