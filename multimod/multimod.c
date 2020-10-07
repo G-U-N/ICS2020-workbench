@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-/*
+
 const uint64_t half=9223372036854775808UL;
 const uint64_t whole_1= 18446744073709551615UL;
 
@@ -81,7 +81,8 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 
 
 }
-*/
+
+/*
 uint64_t mod(uint64_t v, uint64_t m)
 {
     //当m是2的整数次幂时。用于秒过简单样例
@@ -92,7 +93,6 @@ uint64_t mod(uint64_t v, uint64_t m)
     return v;
     
 }
-
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m)
 {
   uint64_t ans=0;
@@ -110,3 +110,4 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m)
 
 
 }
+*/
