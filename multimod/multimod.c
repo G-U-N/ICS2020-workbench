@@ -11,7 +11,7 @@ uint64_t mod(uint64_t a, uint64_t m)
   if((!(m&(m-1)) )&& m)
   {
     int k;
-    for( k=0;(k<64)&!((1<<k)&m);k++);
+    for( k=0;(k<64)&& !((1<<k)&m);k++);
 
     return a&((1<<k)-1);
   }
