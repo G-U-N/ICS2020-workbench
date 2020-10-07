@@ -14,7 +14,17 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     if(b&1)//如果b是奇数
     {
       //这一步的ans+a可能已经出现了溢出
-      ans=(ans+a)%m;
+      if(ans<half|| a<half)
+      {
+             ans=(ans+a)%m;
+      }
+      else
+      {
+        ans=((((ans-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
+        
+      }
+      
+
 
     }
 
