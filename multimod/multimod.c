@@ -18,8 +18,10 @@ uint64_t mod(uint64_t a, uint64_t m)
 
     return a&((1<<k)-1);
   }
-
-
+  while(a>=m)
+  {
+    a-=m;
+  }
   return a;
   
 }
@@ -34,10 +36,11 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   {
     if(b&1)//如果b是奇数
     {
-      ans=mod((ans+a),m);     
+      ans=mod((ans+a),m);
+
+    
     }
 
-     
     a=mod(a+a,m);
     b>>=1;//b/=2;
   }
