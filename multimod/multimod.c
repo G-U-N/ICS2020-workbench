@@ -16,5 +16,6 @@ uint64_t multimod(uint64_t a,uint64_t b,uint64_t m)
 
     b>>=1;
   }
+  return ans;
   
 }
