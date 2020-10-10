@@ -3,8 +3,8 @@
 
 
 
-//const uint64_t half=9223372036854775808UL;
-//const uint64_t whole_1= 18446744073709551615UL;
+const uint64_t half=9223372036854775808UL;
+#define whole 18446744073709551616;
 //如果能够处理好a+b取模m，我就能通过所有样例。
 
 
@@ -20,16 +20,10 @@ uint64_t mod(uint64_t a, uint64_t m)
   }
   while(a>=m)
   {
-    a-=m;
+    a-=m;(
   }
   return a;
   
-}
-uint64_t addmod(uint64_t a,uint64_t b,uint64_t m)
-{
-  return 0;
-
-
 }
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
