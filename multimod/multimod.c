@@ -11,14 +11,18 @@ uint64_t mod(uint64_t a,uint64_t m)
 
     return a&((1<<k)-1);
   }
-  
+  uint64_t x=m;
+  while(x<=a>>1)
+  {
+    x<<=1;
+  }
   while(a>=m)
   {
-    a-=m;
-    if (m<m+m)
+    if(a>=x)
     {
-      m=m+m;
+      a-=x;
     }
+    x>>=1;
   }
   return a;
   
