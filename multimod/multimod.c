@@ -1,6 +1,16 @@
 #include <stdint.h>
 #include <stdio.h>
 
+uint64_t mod(uint64_t a,uint64_t m)
+{
+  while(a>=m)
+  {
+    a-=m;
+  }
+  return a;
+  
+
+}
 
 //返回(a+b)%m
 uint64_t addmod(uint64_t a, uint64_t b, uint64_t m)
@@ -9,12 +19,12 @@ uint64_t addmod(uint64_t a, uint64_t b, uint64_t m)
   //如果溢出
   if(a+b<a||a+b<b)
   {
-   return (a+b)%m+(max_1)%m+1;
+   return mod(a+b,m)+mod(max_1,m)+1;
   }
   //没有溢出
   else
   {
-    return (a+b)%m;
+    return mod(a+b,m);
     
   }
   
