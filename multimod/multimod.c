@@ -5,14 +5,17 @@
 //返回(a+b)%m
 uint64_t addmod(uint64_t a, uint64_t b, uint64_t m)
 {
-  #define constant 18446744073709551615
-  if (constant-a+1<=b)//会溢出
+  uint64_t max_1=18446744073709551615;
+  //如果溢出
+  if(a+b<a||a+b<b)
   {
-    return addmod(((a-constant-1)+b)%m,(constant+1)%m,m);
+   return (a+b)%m+(max_1)%m+1;
   }
+  //没有溢出
   else
   {
     return (a+b)%m;
+    
   }
   
   
