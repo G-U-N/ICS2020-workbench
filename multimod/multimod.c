@@ -5,7 +5,7 @@
 //返回(a+b)%m
 uint64_t addmod(uint64_t a, uint64_t b, uint64_t m)
 {
-  uint64_t constant=18446744073709551616;
+  #define constant 18446744073709551616
   if (constant-a<=b)//会溢出
   {
     return addmod(((a-constant)+b)%m,constant%m,m);
