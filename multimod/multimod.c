@@ -28,7 +28,7 @@ uint64_t mod(uint64_t a, uint64_t m)
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
  
-  uint64_t ans=1;
+  uint64_t ans=0;
   
   a=mod(a,m);
 
@@ -38,7 +38,6 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
     {
       ans=mod((ans+a),m);
 
-    
     }
 
     a=mod(a+a,m);
