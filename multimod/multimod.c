@@ -34,46 +34,11 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
   {
     if(b&1)//如果b是奇数
     {
-      ans=mod((ans*a),m);
-
-
-      //这一步的ans+a可能已经出现了溢出
-/*      if(ans<half&& a<half)
-      {
-             ans=(ans+a)%m;
-      }
-      else if(ans>=half && a>=half)
-      {
-        ans=((((ans-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
-        
-      }
-      else if (ans>=half&&a<half)
-      {
-        ans=((((ans-half)+a)%m+(half)%m))%m;
-      }
-      else
-      {
-        ans=((((ans)+(a-half))%m+(half)%m))%m;
-      }
-      
-*/      
-      
-
-
+      ans=mod((ans+a),m);     
     }
 
-     //这一步的a+a可能已经出现了溢出。 
-
-/*    if (a<half) 
-    {
-      a=(a+a)%m;
-    }
-    else
-    {
-      a=((((a-half)+(a-half))%m+(whole_1)%m)%m+1)%m;
-    }
-*/    
-    a=mod(a*a,m);
+     
+    a=mod(a+a,m);
     b>>=1;//b/=2;
   }
 
