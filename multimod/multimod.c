@@ -15,7 +15,7 @@ uint64_t mod(uint64_t a,uint64_t m)
   while(a>=m)
   {
     a-=m;
-    if (m<2m)
+    if (m<m+m)
     {
       m=m+m;
     }
