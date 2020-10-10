@@ -5,7 +5,7 @@
 //返回(a+b)%m
 uint64_t addmod(uint64_t a, uint64_t b, uint64_t m)
 {
-  uint64_t max_1=18446744073709551615;
+  uint64_t max_1=18446744073709551615UL;
   //如果溢出
   if(a+b<a||a+b<b)
   {
