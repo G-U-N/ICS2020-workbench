@@ -27,6 +27,7 @@ uint64_t mod(uint64_t a, uint64_t m)
 }
 uint64_t addmod(uint64_t a,uint64_t b,uint64_t m)
 {
+  return 0;
 
 
 }
