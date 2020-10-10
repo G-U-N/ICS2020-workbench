@@ -29,9 +29,9 @@ uint64_t multimod(uint64_t a,uint64_t b,uint64_t m)
   {
     if (b&1)
     {
-      ans=(ans+a)%m;//此处可能会有问题
+      ans=addmod(ans,a,m);//此处可能会有问题
     }
-    a=(a+a)%m;//此处可能会有问题
+    a=addmod(a,a,m);//此处可能会有问题
 
     b>>=1;
   }
