@@ -4,13 +4,6 @@
 uint64_t mod(uint64_t a,uint64_t m)
 {
 
-  if((!(m&(m-1)) )&& m)
-  {
-    int k;
-    for( k=0;(k<64)&& !((1<<k)&m);k++);
-
-    return a&((1<<k)-1);
-  }
   uint64_t x=m;
   while(x<=a>>1)
   {
@@ -36,7 +29,7 @@ uint64_t addmod(uint64_t a, uint64_t b, uint64_t m)
   //如果溢出
   if(a+b<a||a+b<b)
   {
-   return mod(a+b,m)+mod(max_1,m)+1;
+   return addmod(mod(a+b,m),mod(max_1,m)+1,m);
   }
   //没有溢出
   else
