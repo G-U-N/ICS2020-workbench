@@ -6,6 +6,8 @@ int64_t asm_add(int64_t a, int64_t b) {
     :[register1] "+r" (a)
     :[register2] "r" (b)
      );
+
+  return a;
 }
 
 int asm_popcnt(uint64_t x) {
