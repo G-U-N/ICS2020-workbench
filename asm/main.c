@@ -4,7 +4,7 @@
 
 int main() {
 
-  printf("%dl\n",asm_add(1234,5678));
+  printf("%ld\n",asm_add(1234,5678));
 
   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
