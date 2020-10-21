@@ -8,8 +8,8 @@ int64_t asm_add(int64_t a, int64_t b) {
   : "a" (a),"b"(b));
 */
   asm("addq %[register1],%[register2];"
-  :"=a"(ans)
-  :"a"(a),"b"(b));
+  :[register2]"=a"(ans)
+  :[register1]"a"(a),[register2]"b"(b));
   return ans;
 }
 
