@@ -4,6 +4,7 @@
 
 int main() {
 
+  printf("%dl\n",asm_add(a,b));
 
   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
