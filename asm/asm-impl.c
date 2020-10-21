@@ -2,7 +2,7 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  asm("addq %%eax, %ebx\n\t"
+  asm("addq %%eax, %%ebx\n\t"
   :"+r"(a)
   :"r"(b)
      );
