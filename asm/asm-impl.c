@@ -2,14 +2,13 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  /*asm("addq %[register1], %[register2];"
+  asm("addq %[register1], %[register2];"
     :[register1] "+r" (a)
     :[register2] "r" (b)
      );
 
   return a;
-  */
-  return a+b;
+  
 }
 
 int asm_popcnt(uint64_t x) {
