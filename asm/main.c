@@ -6,6 +6,8 @@ int main() {
 
   printf("%ld\n",asm_add(1234,5678));
 
+  printf("%d\n",asm_popcnt(0x0123456789abcdefULL));
+
   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
   if (r == 0) {
