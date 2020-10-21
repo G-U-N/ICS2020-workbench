@@ -2,9 +2,9 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  asm("addq %0, %1"
-  :"+a"(a)
-  :"b"(b)
+  asm("addq %0, %1\n\t"
+  :"+r"(a)
+  :"r"(b)
 
      );
 
