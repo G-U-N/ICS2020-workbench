@@ -2,9 +2,10 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  asm("addq %[register1], %[register2];"
-    :[register1] "+r" (a)
-    :[register2] "r" (b)
+  asm("addq %0, %1"
+  :"+r"(a)
+  :"r"(b)
+
      );
 
   return a;
