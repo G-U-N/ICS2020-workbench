@@ -3,12 +3,17 @@
 
 int64_t asm_add(int64_t a, int64_t b) {
   int ans;
-  asm(  "addq %%rbx, %%rax;"
+/*  asm(  "addq %%rbx, %%rax;"
   :"=a" (ans)
-  : "a" (b),"b"(a));
-
+  : "a" (a),"b"(b));
+*/
+  asm("addq %[register1],%[register2];"
+  :"=a"(ans)
+  :"a"(a),"b"(b));
   return ans;
 }
+
+//汇编语言掌握的不好！
 
 int asm_popcnt(uint64_t x) {
   int s = 0;
