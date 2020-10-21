@@ -3,8 +3,8 @@
 
 int64_t asm_add(int64_t a, int64_t b) {
   asm("addq %0, %1"
-  :"+r"(a)
-  :"r"(b)
+  :"+a"(a)
+  :"b"(b)
 
      );
 
