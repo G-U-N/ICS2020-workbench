@@ -2,12 +2,8 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  asm("addq %%eax, %%rax\n\t"
-  :"+r"(a)
-  :"r"(b)
-     );
-
-  return a;
+  asm("addq %%rbx, %%rax\n\t"
+  :"+a"(a):"b"(b));
   
 }
 
