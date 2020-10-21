@@ -4,7 +4,7 @@
 int64_t asm_add(int64_t a, int64_t b) {
   asm("addq %%rbx, %%rax\n\t"
   :"+a"(a):"b"(b));
-  
+  return a;  
 }
 
 int asm_popcnt(uint64_t x) {
