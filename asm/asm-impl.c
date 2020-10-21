@@ -7,7 +7,7 @@ int64_t asm_add(int64_t a, int64_t b) {
     :[register2] "r" (b)
      );
 
-  return a+1;
+  return a;
   
 }
 
