@@ -1,6 +1,7 @@
 #include "asm.h"
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
 
 int main() {
 
@@ -8,9 +9,10 @@ int main() {
 
   printf("%d\n",asm_popcnt(0x0123456789abcdefULL));
 
-  void *dest=&"7654321";
-
-  printf("%p\n",asm_memcpy(dest,"1234567",5));
+  const char src[50]="hello world!";
+  char dest[50];
+  asm_memcpy(dest,src,strlen(src)+1);
+  printf("dest=%s\n",dest);
 
   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
