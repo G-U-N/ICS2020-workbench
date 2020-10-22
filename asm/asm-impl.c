@@ -26,7 +26,7 @@ int asm_popcnt(uint64_t x) {
   "jge label;"
   "movq %%rbx, %%rdx;"
   "shrq %%ecx, %%rdx;"
-  "andq $1, %%rdx;"
+  "and $1, %%rdx;"
   "cmpq $1, %%rdx;"
   "je t1;"
   "jmp t2;"
