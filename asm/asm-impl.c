@@ -64,7 +64,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   "movq %%dcx(%%rbx), %%dcx(%%rax);"
   "incq %%dcx"
   "jmp cycle;"
-  "end;"
+  "end:"
   :"=a"(dest)
   :"a"(dest),"b"(src),"c"(n))
    
