@@ -37,6 +37,8 @@ int asm_popcnt(uint64_t x) {
   "label:"
   :"=a"(ans)
   :"b"(x));
+
+  return ans;
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
