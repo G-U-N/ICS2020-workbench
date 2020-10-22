@@ -22,12 +22,12 @@ int asm_popcnt(uint64_t x) {
   asm(
   "movl $0 %%eax;"//ans
   "movl $0 %%ecx;"//i
-  "cycle:coml %%ecx $64;"
+  "cycle:cmpl %%ecx $64;"
   "jge label;"
   "movq %%rbx %%rdx;"
   "shrq %%ecx %%rdx;"
   "andq $1 %%rdx;"
-  "comq %%rdx $1;"
+  "cmpq %%rdx $1;"
   "je t1;"
   "jmp t2;"
   "t1:"
