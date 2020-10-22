@@ -92,6 +92,8 @@ int asm_setjmp( asm_jmp_buf env) {
   "movq %%rcx, 40(%%rax);"
   "xorq %%rax,%%rax;"
   "ret;");
+
+  return 0;
 }
 
 void asm_longjmp( asm_jmp_buf env, int val) {
