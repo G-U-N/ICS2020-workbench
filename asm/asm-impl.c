@@ -12,11 +12,31 @@ int64_t asm_add(int64_t a, int64_t b) {
 //汇编语言掌握的不好！
 
 int asm_popcnt(uint64_t x) {
-  int s = 0;
+/*  int s = 0;
   for (int i = 0; i < 64; i++) {
     if ((x >> i) & 1) s++;
   }
   return s;
+ */
+  int ans;
+  asm(
+  "movl $0 %%eax;"//ans
+  "movl $0 %%ecx;"//i
+  "cycle:coml %%ecx $64"
+  "jge label;"
+  "movq %%rbx %%rdx;"
+  "shr %%ecx %%rdx;"
+  "and $1 %%rdx"
+  "comq %%rdx $1"
+  "je t1;"
+  "jmp t2;"
+  "t1:"
+  "incl %%eax"
+  "t2:"
+  "jmp cycle"
+  "label:"
+  :"=a"(ans)
+  :"b"(x)) 
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
