@@ -8,7 +8,7 @@ int main() {
 
   printf("%d\n",asm_popcnt(0x0123456789abcdefULL));
 
-  void *dest=&"1";
+  void *dest=&"7654321";
 
   printf("%p\n",asm_memcpy(dest,"1234567",5));
 
