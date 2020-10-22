@@ -60,9 +60,9 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 
   asm("movq $0, %%rdx;"//i
   "cycle_memcpy: cmpq %%rdx, %%rcx;"
-  "jbe end_memcpy:"
+  "jbe end_memcpy;"
   "movq (%%rbx,%%rdx,4), (%%rax,%%rdx,4);"
-  "incq %%rdx"
+  "incq %%rdx;"
   "jmp cycle_memcpy;"
   "end_memcpy:"
   :"=a"(dest)
