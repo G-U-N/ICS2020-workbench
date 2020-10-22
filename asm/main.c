@@ -14,7 +14,7 @@ int main() {
   asm_memcpy(dest,src,strlen(src)+1);
   printf("dest=%s\n",dest);
 
-  asm_jmp_buf buf;
+   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
   if (r == 0) {
     assert(asm_add(1234, 5678) == 6912);

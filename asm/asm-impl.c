@@ -58,11 +58,12 @@ int asm_popcnt(uint64_t x) {
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   //You can't reference two memory locations in a single mov instruction.
+  //不确定是否正确。
   asm("movq $0, %%rdx;"//i
   "cycle_memcpy: cmpq %%rdx, %%rcx;"
   "jbe end_memcpy;"
   "mov (%%rbx,%%rdx,4),%%rsi;"
-  "mov %%rsi,(%%rax,%%rdx,4);"
+  "mov %%rsi,(%%rax,%%rdx,4);"//指针都是32位。
   "incq %%rdx;"
   "jmp cycle_memcpy;"
   "end_memcpy:"
@@ -72,11 +73,28 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   return dest;
    
 }
+//esp保存当前栈顶的地址。
+//ebp保存当前函数栈帧的地址。
+//eip保存下一条指令的地址。
+int asm_setjmp( asm_jmp_buf env) {
+  //return setjmp(env);
+  //把各个信息存储下来，最后返回eax
 
-int asm_setjmp(asm_jmp_buf env) {
-  return setjmp(env);
+  //调用时，需要存储的是ebx，esi,edi,ebp,esp,pc.
+  asm("setjmp:"
+  "movq 8(%%rsp), %%rax;"//把数组首地址地址取下来。
+  "movq %%rbx, (%%rax);"
+  "movq %%rsi, 8(%%rax);"
+  "movq %%rdi, 16(%%rax);"
+  "movq %%rbp, 24(%%rax);"
+  "leaq 8(%%rsp), %%rcx;"//rsp本身的值+8
+  "movq %%rcx , 32(%%rax);"
+  "movq (%%rsp),%%rcx;"//rsp所指向的内存地址中的值，也就是下一条指令的地址。
+  "movq %%rcx, 40(%%rax);"
+  "xorq %%rax,%%rax;"
+  "ret;");
 }
 
-void asm_longjmp(asm_jmp_buf env, int val) {
+void asm_longjmp( asm_jmp_buf env, int val) {
   longjmp(env, val);
 }
