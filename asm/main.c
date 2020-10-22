@@ -10,7 +10,7 @@ int main() {
 
   void *dest;
 
-  prinft("%s",asm_memcpy(dest,"1234567",5));
+  printf("%s\n",asm_memcpy(dest,"1234567",5));
 
   asm_jmp_buf buf;
   int r = asm_setjmp(buf);
