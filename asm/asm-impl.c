@@ -39,10 +39,32 @@ int asm_popcnt(uint64_t x) {
   :"=a"(ans)
   :"b"(x));
   return ans;
+  /*更快的代码
+    "movl $0, %%eax;"//ans
+  "movl $0, %%ecx;"//i
+  "cycle:cmpl $64, %%ecx;"
+  "jge label;"
+  "movq %%rbx, %%rdx;"
+  "and $1,%%rdx;"
+  "addl %%edx,%%eax;"
+  "incl %%ecx;"
+  "shrq $1,%%rbx;"
+  "jmp cycle;"
+  "label:"
+  :"=a"(ans)
+  :"b"(x));
+  */
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
-  return memcpy(dest, src, n);
+
+  return memcpy(dest,src,n);
+/*  asm("movl $0, %%edi;"
+  ""
+  :"=a"(dest)
+  :"a"(dest),"b"(src),"S"(n))
+  
+ */ 
 }
 
 int asm_setjmp(asm_jmp_buf env) {
