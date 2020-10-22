@@ -80,7 +80,7 @@ int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
   //把各个信息存储下来，最后返回eax
   //调用时，需要存储的是ebx，esi,edi,ebp,esp,pc.
-  asm("setjmp:;"
+  asm("setjmp:"
   "mov 8(%%rsp), %%rax;"//参数buf的内容,也就是env的头地址。
   "mov %%rbx, (%%rax);"
   "mov %%rsi, 8(%%rax);"
