@@ -58,11 +58,11 @@ int asm_popcnt(uint64_t x) {
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
 
-  asm("movq $0, %%dcx;"//i
+  asm("movq $0, %%rdx;"//i
   "cycle: cmpq %%rdx, %%rcx;"
   "jbe end:"
-  "movq %%dcx(%%rbx), %%dcx(%%rax);"
-  "incq %%dcx"
+  "movq %%rdx(%%rbx), %%rdx(%%rax);"
+  "incq %%rdx"
   "jmp cycle;"
   "end:"
   :"=a"(dest)
