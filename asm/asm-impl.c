@@ -7,9 +7,9 @@ int64_t asm_add(int64_t a, int64_t b) {
   :"=a" (ans)
   : "a" (a),"b"(b));
 */
-  asm("addq %[register1],%[register2];"
-  :[name1]"=a"(ans)
-  :[name2]"a"(a),[name1]"b"(b));
+  asm("addq %[r1],%[r2];"
+  :[r1]"=a"(ans)
+  :[r1]"a"(a),[r2]"b"(b));
   return ans;
 }
 
