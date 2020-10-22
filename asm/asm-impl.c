@@ -36,7 +36,7 @@ int asm_popcnt(uint64_t x) {
   "jmp cycle"
   "label:"
   :"=a"(ans)
-  :"b"(x)) 
+  :"b"(x));
 }
 
 void *asm_memcpy(void *dest, const void *src, size_t n) {
