@@ -91,7 +91,10 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov (%%rsp),%%rcx;"//rsp所指向的内存地址中的值，也就是下一条指令的地址。
   "mov %%rcx, 40(%%rax);"
   "xor %%rax,%%rax;"
-  "ret;");
+  "ret;"
+  :
+  :
+  :);
 
   return 0;
 }
