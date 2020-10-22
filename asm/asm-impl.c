@@ -79,15 +79,14 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
   //把各个信息存储下来，最后返回eax
-
   //调用时，需要存储的是ebx，esi,edi,ebp,esp,pc.
   asm("setjmp:"
-  "movq 8(%%rsp), %%rax;"//把数组首地址地址取下来。
+  "movq 8(%%rsp), %%rax;"//参数buf的内容,也就是env的头地址。
   "movq %%rbx, (%%rax);"
   "movq %%rsi, 8(%%rax);"
   "movq %%rdi, 16(%%rax);"
   "movq %%rbp, 24(%%rax);"
-  "leaq 8(%%rsp), %%rcx;"//rsp本身的值+8
+  "leaq 8(%%rsp), %%rcx;"//rsp本身的值+4。
   "movq %%rcx , 32(%%rax);"
   "movq (%%rsp),%%rcx;"//rsp所指向的内存地址中的值，也就是下一条指令的地址。
   "movq %%rcx, 40(%%rax);"
@@ -96,5 +95,19 @@ int asm_setjmp( asm_jmp_buf env) {
 }
 
 void asm_longjmp( asm_jmp_buf env, int val) {
-  longjmp(env, val);
+  asm("longjmp:"
+  "movq 8(%%rsp), %%rdx;"
+  "movq 16(%%rsp), %%rax;"
+  "cmpq %%rax,%%rax;"
+  "jnz 1;"
+  "incq %%rax;"
+  "1:"
+  "movq (%%rdx), %%rbx;"
+  "movq 8(%%rdx),%%rsi;"
+  "movq 16(%%rdx),%%rdi;"
+  "movq 24(%%rdx),%%rbq;"
+  "movq 32(%%rdx),%%rcx;"
+  "movq %%rcx,%%rsp;"
+  "movq 40(%%rdx),%%rcx;"
+  "jmp *%rcx;")
 }
