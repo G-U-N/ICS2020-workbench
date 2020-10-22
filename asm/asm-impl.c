@@ -22,7 +22,7 @@ int asm_popcnt(uint64_t x) {
   asm(
   "movl $0, %%eax;"//ans
   "movl $0, %%ecx;"//i
-  "cycle:cmpl $64, %%ecx;"
+  "cycle_popcnt:cmpl $64, %%ecx;"
   "jge label;"
   "movq %%rbx, %%rdx;"
   "shrq %%ecx, %%rdx;"
@@ -34,7 +34,7 @@ int asm_popcnt(uint64_t x) {
   "incl %%eax;"
   "t2:"
   "incl %%ecx;"
-  "jmp cycle;"
+  "jmp cycle_popcnt;"
   "label:"
   :"=a"(ans)
   :"b"(x));
@@ -59,12 +59,12 @@ int asm_popcnt(uint64_t x) {
 void *asm_memcpy(void *dest, const void *src, size_t n) {
 
   asm("movq $0, %%rdx;"//i
-  "cycle: cmpq %%rdx, %%rcx;"
-  "jbe end:"
+  "cycle_memcpy: cmpq %%rdx, %%rcx;"
+  "jbe end_memcpy:"
   "movq %%rdx(%%rbx), %%rdx(%%rax);"
   "incq %%rdx"
-  "jmp cycle;"
-  "end:"
+  "jmp cycle_memcpy;"
+  "end_memcpy:"
   :"=a"(dest)
   :"a"(dest),"b"(src),"c"(n));
 
