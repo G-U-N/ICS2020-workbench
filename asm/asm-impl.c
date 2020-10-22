@@ -2,15 +2,11 @@
 #include <string.h>
 
 int64_t asm_add(int64_t a, int64_t b) {
-  int ans;
-/*  asm(  "addq %%rbx, %%rax;"
-  :"=a" (ans)
+  asm(  "addq %%rbx, %%rax;"
+  :"=a" (a)
   : "a" (a),"b"(b));
-*/
-  asm("addq %1,%0;"
-  :"=a"(ans)
-  :"a"(a),"b"(b));
-  return ans;
+
+  return a;
 }
 
 //汇编语言掌握的不好！
