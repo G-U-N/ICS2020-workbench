@@ -27,6 +27,7 @@ int asm_popcnt(uint64_t x) {
   "movq %%rbx, %%rdx;"
   "and $1,%%rdx;"
   "addl %%edx,%%eax;"
+  "incl %%ecx;"
   "shrq $1,%%rbx;"
   "jmp cycle;"
   "label:"
