@@ -78,18 +78,18 @@ int asm_setjmp( asm_jmp_buf env) {
   //把各个信息存储下来，最后返回rax
   //调用时，需要存储的是rbx，rsi,rdi,rbp,rsp,pc.
   asm("setjmp:"
-  "push %%rbp;"
-  "mov %%rsp, %%rbp;"
-  "mov %%rdi,%%rax;"//env的位置
+  "push %%rbp;" //压栈
+  "mov %%rsp, %%rbp;" //rsp和rbp都指向栈底。
+  "mov 16(%%rsp),%%rax;"//找到传送过来的参数，存放在rdi中。
   "mov %%rbx,(%%rax);"
   "mov %%rsi,8(%%rax);"
-  "mov %%rdi,16(%%rax);"
+  "mov %%rdi,16(%%rax);"//被调用者寄存器中的内容 rbx，rsi，rdi。
   "mov (%%rbp),%%rcx;"
-  "mov %%rcx, 24(%%rax);"
+  "mov %%rcx, 24(%%rax);"//调用之前的栈底地址rbp
   "lea 8(%%rbp),%%rcx;"
-  "mov %%rcx,32(%%rax);"
+  "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处，rsp
   "mov 8(%%rbp),%%rcx;"
-  "mov %%rcx, 40(%%rax);"
+  "mov %%rcx, 40(%%rax);"//上一个过程的rsp之前的pc，所以会重复执行调用者。
   "xor %%rax,%%rax;"
   "pop %%rbp;"
   "ret;"
