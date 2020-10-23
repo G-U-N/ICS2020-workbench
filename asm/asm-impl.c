@@ -81,13 +81,13 @@ int asm_setjmp( asm_jmp_buf env) {
   ".globl setjmp;"
   "setjmp:;"
   "push %%rbp;" //压栈
-  "mov %%rsp, %%rbp;" //rsp和rbp都指向栈底。
+  "mov %%rsp, %%rbp;" //指向下一条指令。
   "mov %%rdi,%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
   "mov %%rbx,(%%rax);"
   "mov %%rsi,8(%%rax);"
   "mov %%rdi,16(%%rax);"//被调用者寄存器中的内容 rbx，rsi，rdi。
-  "mov (%%rbp),%%rcx;"
-  "mov %%rcx, 24(%%rax);"//调用之前的栈底地址rbp
+  "mov %%rbp,%%rcx;"
+  "mov %%rcx, 24(%%rax);"
   "lea 16(%%rbp),%%rcx;"
   "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处,rsp
   "mov 8(%%rbp),%%rcx;"
