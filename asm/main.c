@@ -25,7 +25,7 @@ int main() {
     assert(asm_popcnt(0xffffffffffffffffull)==64);
     assert(asm_popcnt(0x0123456789abcdefULL) == 32);
     asm_longjmp(buf, 123);
-    printf("QAQ,wrong!\n");
+    printf("TAT,没有跳转！wrong!\n");
   } else {
     assert(r == 123);
     printf("PASSED.\n");
