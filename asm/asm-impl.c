@@ -106,13 +106,15 @@ void asm_longjmp( asm_jmp_buf env, int val) {
   asm(
   ".globl longjmp;"
   "longjmp:;"
+  "mov %%rdi, %%rdx;"
+  "mov %%esi, %%eax;"
   "mov (%%rdx),%%rbx;"
   "mov 8(%%rdx),%%rsi;"
   "mov 16(%%rdx),%%rdi;"
   "mov 24(%%rdx),%%rbp;"
   "mov 32(%%rdx),%%rsp;"
   "jmp *40(%%rdx);"
-  :"=a"(val)
-  :"d"(env),"a"(val)
+  :
+  :
   :);
 }
