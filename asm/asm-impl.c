@@ -87,9 +87,9 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov (%%rbp),%%rcx;"
   "mov %%rcx, 24(%%rax);"//调用之前的栈底地址rbp
   "lea 8(%%rbp),%%rcx;"
-  "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处
+  "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处,rsp
   "mov 8(%%rbp),%%rcx;"
-  "mov %%rcx, 40(%%rax);"//上一个过程的rsp之前的pc，所以会重复执行调用者。
+  "mov %%rcx, 40(%%rax);"//上一个过程的rsp之前的eip，存储了读取指令的地址，所以会重复执行调用者。
   "xor %%rax,%%rax;"
   "pop %%rbp;"
   "ret;"
@@ -102,9 +102,19 @@ int asm_setjmp( asm_jmp_buf env) {
 void asm_longjmp( asm_jmp_buf env, int val) {
 
   asm("longjmp:;"
-  ""
-  " "
-  :
-  :
+  "mov $esi, $eax"
+  "cmp $0, %%eax;"
+  "jne jongjmp;"
+  "inc %%eax;"
+  "longjmp:"
+  "mov (%%rdi),%%rbx;"
+  "mov 8(%%rdi),%%rsi;"
+  "mov 16(%%rdi),%%rdi;"
+  "mov 24(%%rdi),%%rbp;"
+  "mov 32(%%rdi),%%rsp;"
+  "mov 40(%%rdi),%%rcx;"
+  "jmp *%%rcx;"
+  :"=s"(val)
+  :"D"(env),"S"(val)
   :);
 }
