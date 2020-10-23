@@ -102,10 +102,9 @@ int asm_setjmp( asm_jmp_buf env) {
 void asm_longjmp( asm_jmp_buf env, int val) {
 
   asm("longjmp:"
-  "mov %%esi, %%eax;"
   "test %%eax,%%eax;"
   "jnz jm;"//不为0
-  "inc %%esi;"
+  "inc %%eax;"
   "jm:"
   "mov (%%rdx),%%rbx;"
   "mov 8(%%rdx),%%rsi;"
@@ -115,6 +114,6 @@ void asm_longjmp( asm_jmp_buf env, int val) {
   "mov 40(%%rdx),%%rcx;"
   "jmp *%%rcx;"
   :"=a"(val)
-  :"d"(env),"S"(val)
+  :"d"(env),"a"(val)
   :);
 }
