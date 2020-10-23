@@ -102,7 +102,6 @@ int asm_setjmp( asm_jmp_buf env) {
 void asm_longjmp( asm_jmp_buf env, int val) {
 
   asm("longjmp:"
-  "jm:"
   "mov (%%rdx),%%rbx;"
   "mov 8(%%rdx),%%rsi;"
   "mov 16(%%rdx),%%rdi;"
