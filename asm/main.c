@@ -19,6 +19,7 @@ int main() {
   printf("%d\n",asm_setjmp(buf));
 
   int r = asm_setjmp(buf);
+  printf("abc\n");
   if (r == 0) {
     assert(asm_add(1234, 5678) == 6912);
     assert(asm_add(-2147483648,2147483647)==-1);
