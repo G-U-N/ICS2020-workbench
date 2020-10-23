@@ -90,7 +90,7 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov %%rcx, 24(%%rax);"//调用之前的栈底地址rbp
   "lea 16(%%rbp),%%rcx;"
   "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处,rsp
-  "lea 8(%%rsp),%%rcx;"
+  "mov 8(%%rbp),%%rcx;"
   "mov %%rcx, 40(%%rax);"//上一个过程的rsp之前的eip，存储了读取指令的地址，所以会重复执行调用者。
   "xor %%rax,%%rax;"
   "pop %%rbp;"
