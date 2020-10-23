@@ -75,8 +75,8 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
 }
 int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
-  //把各个信息存储下来，最后返回eax
-  //调用时，需要存储的是ebx，esi,edi,ebp,esp,pc.
+  //把各个信息存储下来，最后返回rax
+  //调用时，需要存储的是rbx，rsi,rdi,rbp,rsp,pc.
   asm("setjmp:"
   "push %%rbp;"
   "mov %%rsp, %%rbp;"
@@ -86,7 +86,7 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov %%rdi,16(%%rax);"
   "mov (%%rbp),%%rcx;"
   "mov %%rcx, 24(%%rax);"
-  "lea 16(%%rbp),%%rcx;"
+  "lea 8(%%rbp),%%rcx;"
   "mov %%rcx,32(%%rax);"
   "mov 8(%%rbp),%%rcx;"
   "mov %%rcx, 40(%%rax);"
@@ -101,21 +101,7 @@ int asm_setjmp( asm_jmp_buf env) {
 
 void asm_longjmp( asm_jmp_buf env, int val) {
 
-  asm("longjmp:;"
-  "mov 8(%%rsp), %%rdx;"
-  "mov 16(%%rsp), %%rax;"
-  "cmp %%rax,%%rax;"
-  "jnz 1;"
-  "inc %%rax;"
-  "1:;"
-  "mov (%%rdx), %%rbx;"
-  "mov 8(%%rdx),%%rsi;"
-  "mov 16(%%rdx),%%rdi;"
-  "mov 24(%%rdx),%%rbp;"
-  "mov 32(%%rdx),%%rcx;"
-  "mov %%rcx,%%rsp;"
-  "mov 40(%%rdx),%%rcx;"
-  "jmp *%%rcx;"
+  asm(
   :
   :
   :);
