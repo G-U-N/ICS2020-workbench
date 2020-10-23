@@ -21,6 +21,8 @@ int main() {
   int r = asm_setjmp(buf);
   if (r == 0) {
     assert(asm_add(1234, 5678) == 6912);
+    assert(asm_add(-2147483648,2147483647)==-1);
+    assert(asm_popcnt(0xffffffffffffffffull)==64);
     assert(asm_popcnt(0x0123456789abcdefULL) == 32);
     asm_longjmp(buf, 123);
     printf("QAQ,wrong!\n");
