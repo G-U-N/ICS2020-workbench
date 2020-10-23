@@ -73,24 +73,25 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   return dest;
    
 }
-//esp保存当前栈顶的地址。
-//ebp保存当前函数栈帧的地址。
-//eip保存下一条指令的地址。
 int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
   //把各个信息存储下来，最后返回eax
   //调用时，需要存储的是ebx，esi,edi,ebp,esp,pc.
   asm("setjmp:"
-  "mov 4(%%rsp), %%rax;"//参数buf的内容,也就是env的头地址。
-  "mov %%rbx, (%%rax);"
-  "mov %%rsi, 8(%%rax);"
-  "mov %%rdi, 16(%%rax);"
-  "mov %%rbp, 24(%%rax);"
-  "lea 4(%%rsp), %%rcx;"//rsp本身的值+4。
-  "mov %%rcx , 32(%%rax);"
-  "mov (%%rsp),%%rcx;"//rsp所指向的内存地址中的值，也就是下一条指令的地址。
+  "push %%rbp;"
+  "mov %%rsp, %%rbp;"
+  "mov 16(%%rsp),%rax;"//env的位置
+  "mov %%rbx,(%%rax);"
+  "mov %%rsi,8(%%rax);"
+  "mov %%rdi,16(%%rax);"
+  "mov (%%rbp),%%rcx;"
+  "mov %%rcx, 24(%%rax);"
+  "lea 16(%%rbp),%%rcx;"
+  "mov rcx,32(%%rax);"
+  "mov 8(%%rbp),%%rcx;"
   "mov %%rcx, 40(%%rax);"
   "xor %%rax,%%rax;"
+  "pop %%rbp;"
   "ret;"
   :
   :
