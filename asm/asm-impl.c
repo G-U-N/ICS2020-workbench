@@ -77,27 +77,42 @@ int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
   //把各个信息存储下来，最后返回rax
   //调用时，需要存储的是rbx，rsi,rdi,rbp,rsp,pc.
+  /*
   asm(
   ".globl setjmp;"
   "setjmp:;"
   "push %%rbp;" //压栈
-  "mov %%rsp, %%rbp;" //指向下一条指令。
+  "mov %%rsp, %%rbp;" //指向下一条指令。rsp和rbp都是
   "mov %%rdi,%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
   "mov %%rbx,(%%rax);"
   "mov %%rsi,8(%%rax);"
   "mov %%rdi,16(%%rax);"//被调用者寄存器中的内容 rbx，rsi，rdi。
-  "mov %%rbp,%%rcx;"
-  "mov %%rcx, 24(%%rax);"
+  "mov (%%rbp),%%rcx;"
+  "mov %%rcx, 24(%%rax);"//存储以前的rbp
   "lea 16(%%rbp),%%rcx;"
-  "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处,rsp
+  "mov %%rcx,32(%%rax);"//存储原来的buf地址，rsp的值，
   "mov 8(%%rbp),%%rcx;"
-  "mov %%rcx, 40(%%rax);"//setjmp下一条指令地址传给eip。
+  "mov %%rcx, 40(%%rax);"//原来的eip指向的地址。
   "xor %%rax,%%rax;"
   "pop %%rbp;"
   "ret;"
   :
   :
   :);
+  */
+  //代补充，不使用pop的写法。
+  asm("setjmp:;"
+  "mov %%rdi, %%rax;"
+  "mov %%rbx,(%%rax);"
+  "mov %%rsi,8(%%rax);"
+  "mov %%rdi,16(%%rax);"
+  "mov %%rbp, 24(%%rax);"
+  "lea 8(%%rsp), %%rcx;"
+  "mov %%rcx,32(%%rax);"
+  "mov (%%rsp),%%rcx;"
+  "mov %%rcx,40(%%rax);"
+  "xor %%rax,%%rax;"
+  "ret;");
   return 0;
 }
 
