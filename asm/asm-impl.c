@@ -112,7 +112,10 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov (%%rsp),%%rcx;"
   "mov %%rcx,40(%%rax);"
   "xor %%rax,%%rax;"
-  "ret;");
+  "ret;"
+  :
+  :
+  :);
   return 0;
 }
 
