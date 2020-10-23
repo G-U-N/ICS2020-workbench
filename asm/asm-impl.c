@@ -107,14 +107,14 @@ void asm_longjmp( asm_jmp_buf env, int val) {
   "jnz jm;"//不为0
   "inc %%esi;"
   "jm:"
-  "mov (%%rdi),%%rbx;"
-  "mov 8(%%rdi),%%rsi;"
-  "mov 16(%%rdi),%%rdi;"
-  "mov 24(%%rdi),%%rbp;"
-  "mov 32(%%rdi),%%rsp;"
-  "mov 40(%%rdi),%%rcx;"
+  "mov (%%rdx),%%rbx;"
+  "mov 8(%%rdx),%%rsi;"
+  "mov 16(%%rdx),%%rdi;"
+  "mov 24(%%rdx),%%rbp;"
+  "mov 32(%%rdx),%%rsp;"
+  "mov 40(%%rdx),%%rcx;"
   "jmp *%%rcx;"
   :"=a"(val)
-  :"D"(env),"S"(val)
+  :"d"(env),"S"(val)
   :);
 }
