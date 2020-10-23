@@ -80,7 +80,7 @@ int asm_setjmp( asm_jmp_buf env) {
   asm("setjmp:"
   "push %%rbp;" //压栈
   "mov %%rsp, %%rbp;" //rsp和rbp都指向栈底。
-  "mov 8(%%rsp),%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
+  "mov %%rdi,%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
   "mov %%rbx,(%%rax);"
   "mov %%rsi,8(%%rax);"
   "mov %%rdi,16(%%rax);"//被调用者寄存器中的内容 rbx，rsi，rdi。
