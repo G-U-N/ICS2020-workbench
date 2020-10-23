@@ -87,7 +87,7 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov (%%rbp),%%rcx;"
   "mov %%rcx, 24(%%rax);"
   "lea 16(%%rbp),%%rcx;"
-  "mov rcx,32(%%rax);"
+  "mov %%rcx,32(%%rax);"
   "mov 8(%%rbp),%%rcx;"
   "mov %%rcx, 40(%%rax);"
   "xor %%rax,%%rax;"
