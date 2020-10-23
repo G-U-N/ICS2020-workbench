@@ -80,14 +80,14 @@ int asm_setjmp( asm_jmp_buf env) {
   asm("setjmp:"
   "push %%rbp;" //压栈
   "mov %%rsp, %%rbp;" //rsp和rbp都指向栈底。
-  "mov %%rdi,%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
+  "mov 4(%%rsp),%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
   "mov %%rbx,(%%rax);"
   "mov %%rsi,8(%%rax);"
   "mov %%rdi,16(%%rax);"//被调用者寄存器中的内容 rbx，rsi，rdi。
   "mov (%%rbp),%%rcx;"
   "mov %%rcx, 24(%%rax);"//调用之前的栈底地址rbp
   "lea 8(%%rbp),%%rcx;"
-  "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处，rsp not sure
+  "mov %%rcx,32(%%rax);"//调用setjmp之前的返回地址处
   "mov 8(%%rbp),%%rcx;"
   "mov %%rcx, 40(%%rax);"//上一个过程的rsp之前的pc，所以会重复执行调用者。
   "xor %%rax,%%rax;"
@@ -102,6 +102,8 @@ int asm_setjmp( asm_jmp_buf env) {
 void asm_longjmp( asm_jmp_buf env, int val) {
 
   asm("longjmp:;"
+  ""
+  " "
   :
   :
   :);
