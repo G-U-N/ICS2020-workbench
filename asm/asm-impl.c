@@ -103,7 +103,7 @@ void asm_longjmp( asm_jmp_buf env, int val) {
 
   asm("longjmp:"
   "mov $esi, $eax;"
-  "cmp $0, %%eax;"
+  "cmp %%eax,$0;"
   "jne jongjmp;"
   "inc %%eax;"
   "longjmp:"
