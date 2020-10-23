@@ -95,6 +95,7 @@ int asm_setjmp( asm_jmp_buf env) {
   :
   :
   :);
+  return ;
 }
 
 void asm_longjmp( asm_jmp_buf env, int val) {
