@@ -86,7 +86,7 @@ int asm_setjmp( asm_jmp_buf env) {
   "mov %%rsi, 8(%%rax);"
   "mov %%rdi, 16(%%rax);"
   "mov %%rbp, 24(%%rax);"
-  "lea 4c(%%rsp), %%rcx;"//rsp本身的值+4。
+  "lea 4(%%rsp), %%rcx;"//rsp本身的值+4。
   "mov %%rcx , 32(%%rax);"
   "mov (%%rsp),%%rcx;"//rsp所指向的内存地址中的值，也就是下一条指令的地址。
   "mov %%rcx, 40(%%rax);"
@@ -95,7 +95,7 @@ int asm_setjmp( asm_jmp_buf env) {
   :
   :
   :);
-  return 0 ;
+  return 0;
 }
 
 void asm_longjmp( asm_jmp_buf env, int val) {
