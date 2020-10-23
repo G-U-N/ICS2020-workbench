@@ -105,7 +105,7 @@ void asm_longjmp( asm_jmp_buf env, int val) {
   "mov %%esi, %%eax;"
   "cmp %%eax,%%eax;"
   "jne jm;"
-  "inc %%eax;"
+  "inz %%eax;"
   "jm:"
   "mov (%%rdi),%%rbx;"
   "mov 8(%%rdi),%%rsi;"
