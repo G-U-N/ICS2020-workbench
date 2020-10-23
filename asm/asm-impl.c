@@ -80,7 +80,7 @@ int asm_setjmp( asm_jmp_buf env) {
   asm("setjmp:"
   "push %%rbp;"
   "mov %%rsp, %%rbp;"
-  "mov 16(%%rsp),%%rax;"//env的位置
+  "mov %%rdi,%%rax;"//env的位置
   "mov %%rbx,(%%rax);"
   "mov %%rsi,8(%%rax);"
   "mov %%rdi,16(%%rax);"
