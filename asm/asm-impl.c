@@ -77,7 +77,9 @@ int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
   //把各个信息存储下来，最后返回rax
   //调用时，需要存储的是rbx，rsi,rdi,rbp,rsp,pc.
-  asm("setjmp:"
+  asm(
+  ".globl setjmp;"
+  "setjmp:"
   "push %%rbp;" //压栈
   "mov %%rsp, %%rbp;" //rsp和rbp都指向栈底。
   "mov %%rdi,%%rax;"//找到传送过来的参数，也就是env的头指针，存放在rdi中。
@@ -101,7 +103,9 @@ int asm_setjmp( asm_jmp_buf env) {
 
 void asm_longjmp( asm_jmp_buf env, int val) {
 
-  asm("longjmp:"
+  asm(
+  ".globl longjmp;"
+  "longjmp:"
   "mov (%%rdx),%%rbx;"
   "mov 8(%%rdx),%%rsi;"
   "mov 16(%%rdx),%%rdi;"
