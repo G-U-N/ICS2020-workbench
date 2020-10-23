@@ -107,8 +107,7 @@ void asm_longjmp( asm_jmp_buf env, int val) {
   "mov 16(%%rdx),%%rdi;"
   "mov 24(%%rdx),%%rbp;"
   "mov 32(%%rdx),%%rsp;"
-  "mov 40(%%rdx),%%rcx;"
-  "jmp *%%rcx;"
+  "jmp *40(%%rdx);"
   :"=a"(val)
   :"d"(env),"a"(val)
   :);
