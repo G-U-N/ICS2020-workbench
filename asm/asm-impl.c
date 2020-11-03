@@ -59,26 +59,14 @@ int asm_popcnt(uint64_t x) {
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   //You can't reference two memory locations in a single mov instruction.
   //不确定是否正确。
-  /*asm("movq $0, %%rdx;"//i
+  asm("movq $0, %%rdx;"//i
   "cycle_memcpy: cmpq %%rdx, %%rcx;"
   "je end_memcpy;"
-  "mov (%%rbx,%%rdx,4),%%rsi;"
-  "mov %%rsi,(%%rax,%%rdx,4);"//指针都是32位。
+  "mov (%%rbx,%%rdx,8),%%rsi;"
+  "mov %%rsi,(%%rax,%%rdx,8);"//指针都是32位。
   "inc %%rdx;"
   "jmp cycle_memcpy;"
   "end_memcpy:"
-  */
-  asm(
-  "mov $0 %%edi;"
-  "cyc:cmp %%edi, %%ecx;"
-  "jbe cycend;"
-  "mov (%%ebx),%%edx;"
-  "mov %%edx,(%%eax);"
-  "inc %%ebx;"
-  "inc %%eax;"
-  "inc %%edi;"
-  "jmp cyc;"
-  "cycend:"
   :"=a"(dest)
   :"a"(dest),"b"(src),"c"(n));
 
