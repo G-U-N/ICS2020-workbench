@@ -75,7 +75,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   return dest;
 */
   asm("movq $0 %%rsi;"
-  "cycle_memcpy: cmpq %%rdx, %%rcx;"
+  "cycle_memcpy: cmpq %%rsi, %%rcx;"
   "jbe end_memcpy;"
   "mov (%%rbx,%%rsi,1),%%dl;"
   "mov %%dl, (%%rax,%%rsi,1);"
