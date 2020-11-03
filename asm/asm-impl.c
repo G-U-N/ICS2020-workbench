@@ -61,7 +61,7 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   //不确定是否正确。
   asm("movq $0, %%rdx;"//i
   "cycle_memcpy: cmpq %%rdx, %%rcx;"
-  "jle end_memcpy;"
+  "jbe end_memcpy;"
   "mov (%%rbx,%%rdx,4),%%rsi;"
   "mov %%rsi,(%%rax,%%rdx,4);"//指针都是32位。
   "incq %%rdx;"
