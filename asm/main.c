@@ -9,7 +9,7 @@ int main() {
 
   printf("%d\n",asm_popcnt(0x0123456789abcdefULL));
   
-  const char src[50]="hello world!";
+  const char src[50]="hello world!\n";
   char dest[50];
   asm_memcpy(dest,src,strlen(src)+1);
   printf("dest=%s\n",dest);
