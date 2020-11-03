@@ -11,7 +11,7 @@ int main() {
   
   const char src[50]="hello world!\n";
   char dest[50];
-  asm_memcpy(dest,src,2);
+  asm_memcpy(dest,src,strlen(src)+1);
   printf("dest=%s\n",dest);
 
   asm_jmp_buf buf;
