@@ -77,13 +77,13 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   asm("movq $0 %%rsi;"
   "cycle_memcpy: cmpq %%rsi, %%rcx;"
   "jbe end_memcpy;"
-  "movb (%%rbx,%%rsi,1),%%dl;"
-  "movb %%dl, (%%rax,%%rsi,1);"
+  "mov (%%rbx,%%rsi,1),%%dh;"
+  "mov %%dh, (%%rax,%%rsi,1);"
   "inc %%rsi;"
   "jmp cycle_memcpy;"
   "end_memcpy:"
   :"=a"(dest)
-  :"a"(dest),"b"(src),"c"(n)) ;
+  :"a"(dest),"b"(src),"c"(n));
   return dest;
 }
 int asm_setjmp( asm_jmp_buf env) {
