@@ -59,6 +59,8 @@ int asm_popcnt(uint64_t x) {
 void *asm_memcpy(void *dest, const void *src, size_t n) {
   //You can't reference two memory locations in a single mov instruction.
   //不确定是否正确。
+ /*
+  原来这样一次mov会直接mov掉8个字符。
   asm("movq $0, %%rdx;"//i
   "cycle_memcpy: cmpq %%rdx, %%rcx;"
   "jbe end_memcpy;"
@@ -71,7 +73,18 @@ void *asm_memcpy(void *dest, const void *src, size_t n) {
   :"a"(dest),"b"(src),"c"(n));
 
   return dest;
-   
+*/
+  asm("movq $0 %%rsi;"
+  "cycle_memcpy: cmpq %%rdx, %%rcx;"
+  "jbe end_memcpy;"
+  "mov (%%rbx,%%rsi,1),%%dl"
+  "mov %%dl, (%%rax,%%rsi,1);"
+  "inc %%rsi;"
+  "jmp cycle_memcpy;"
+  "end_memcpy;"
+  :"=a"(dest)
+  :"a"(dest),"b"(src),"c"(n)) ;
+  return dest;
 }
 int asm_setjmp( asm_jmp_buf env) {
   //return setjmp(env);
