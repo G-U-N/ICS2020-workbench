@@ -51,7 +51,11 @@ int *sieve(int n) {
 #ifdef ola
 int *sieve(int n)
 {
-  memset(is_prime,1,sizeof(is_prime));
+  //memset(is_prime,1,sizeof(is_prime));
+  for (int i=2;i<=n;i++)
+  {
+    is_prime[i]=1;
+  }
   start=clock();
   int cnt=0;
 
