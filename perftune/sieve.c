@@ -52,7 +52,8 @@ int *sieve(int n) {
 int *sieve(int n)
 {
   start=clock();
-  for (int i=2;i<=n;i++)
+  //不需要处理偶数
+  for (int i=3;i<=n;i+=2)
   {
     is_prime[i]=1;
   }
@@ -68,7 +69,7 @@ int *sieve(int n)
     }
 
 
-    for (int j=0;j<cnt && i*primes[j]<=n;j++)
+    for (int j=1;j<cnt && i*primes[j]<=n;j++)
     {
       is_prime[i*primes[j]]=0;
 
