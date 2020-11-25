@@ -53,13 +53,12 @@ int *sieve(int n)
 {
   start=clock();
   //不需要处理偶数
+  primes[0]=2;
+  int cnt=1;
   for (int i=3;i<=n;i+=2)
   {
     is_prime[i]=1;
   }
-
-  primes[0]=2;
-  int cnt=1;
 
   for (int i=3;i<=n;i+=2)
   {
