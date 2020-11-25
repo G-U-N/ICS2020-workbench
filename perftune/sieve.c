@@ -2,6 +2,9 @@
 #include <string.h>
 #include <assert.h>
 #include <stdio.h>
+#include <time.h>
+
+clock_t start,total;
 
 #define N 10000000
 
@@ -14,6 +17,7 @@ static int  primes[N];
 
 int *sieve(int n) {
   assert(n + 1 < N);
+  start=clock();
   for (int i = 0; i <= n; i++)
     is_prime[i] = true;
 
@@ -31,6 +35,8 @@ int *sieve(int n) {
       *p++ = i;
     }
   *p = 0;
+  total=clock()-start;
+  printf("%ld",total);
   return primes;
 }
 
@@ -40,7 +46,7 @@ int *sieve(int n) {
 int *sieve(int n)
 {
   //memset(is_prime,1,sizeof(is_prime));
-  
+  start=clock();
   int cnt=0;
 
   for (int i=2;i<=n;i++)
@@ -63,6 +69,8 @@ int *sieve(int n)
   }
 
   primes[cnt]=0;
+  total=clock()-start;  
+  printf("%ld",total);
   return primes;
   
 }
