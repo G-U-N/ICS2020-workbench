@@ -56,6 +56,7 @@ int *sieve(int n)
   {
     is_prime[i]=1;
   }
+  
   int cnt=0;
 
   for (int i=2;i<=n;i++)
