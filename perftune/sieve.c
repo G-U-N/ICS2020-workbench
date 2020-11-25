@@ -57,5 +57,7 @@ int *seieve(int n)
       }
     }
   }
+
+  return primes;
   
 }
