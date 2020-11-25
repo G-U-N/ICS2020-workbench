@@ -10,7 +10,7 @@ clock_t start,total;
 int main() {
   start=clock();
   
-  int *primes = sieve(10000000);
+  int *primes = sieve(1000000);
   for (int *cur = primes, i = 0; *cur; cur++, i++) {
     printf("%8d", *cur);
     if (i % 8 == 7 || !*(cur + 1)) printf("\n");
