@@ -8,7 +8,7 @@
 static bool is_prime[N];
 static int  primes[N];
 
-//#define is_origin
+#define is_origin
 
 #ifdef is_origin
 
@@ -33,6 +33,8 @@ int *sieve(int n) {
   *p = 0;
   return primes;
 }
+
+
 
 #else
 int *sieve(int n)
