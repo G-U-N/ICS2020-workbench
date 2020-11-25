@@ -11,9 +11,15 @@ clock_t start,total;
 static bool is_prime[N];
 static int  primes[N];
 
-#define is_origin
 
-#ifdef is_origin
+//欧拉筛时间，o(n).
+//埃氏筛的时间o(nloglogn)
+
+//#define origin
+#define ola
+//#define as
+
+#ifdef origin
 
 int *sieve(int n) {
   assert(n + 1 < N);
@@ -42,16 +48,19 @@ int *sieve(int n) {
 
 
 
-#else
+#endif
+
+
+#ifdef ola
 int *sieve(int n)
 {
-  //memset(is_prime,1,sizeof(is_prime));
+  memset(is_prime,1,sizeof(is_prime));
   start=clock();
   int cnt=0;
 
   for (int i=2;i<=n;i++)
   {
-    if (!is_prime[i])
+    if (is_prime[i])
     {
       primes[cnt++]=i;
     }
@@ -59,7 +68,7 @@ int *sieve(int n)
 
     for (int j=0;j<cnt && i*primes[j]<=n;j++)
     {
-      is_prime[i*primes[j]]=1;
+      is_prime[i*primes[j]]=0;
 
       if (i%primes[j]==0)
       {
