@@ -8,8 +8,10 @@
 static bool is_prime[N];
 static int  primes[N];
 
+#define is_origin
 
-/*
+#ifdef is_origin
+
 int *sieve(int n) {
   assert(n + 1 < N);
   for (int i = 0; i <= n; i++)
@@ -31,8 +33,8 @@ int *sieve(int n) {
   *p = 0;
   return primes;
 }
-*/
 
+#else
 int *sieve(int n)
 {
   memset(is_prime,1,sizeof(is_prime));
@@ -62,3 +64,4 @@ int *sieve(int n)
   return primes;
   
 }
+#endif
