@@ -33,7 +33,7 @@ int *sieve(int n) {
 }
 */
 
-int *seieve(int n)
+int *sieve(int n)
 {
   memset(is_prime,1,sizeof(is_prime));
   
