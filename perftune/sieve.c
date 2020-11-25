@@ -11,7 +11,7 @@ clock_t start,total;
 static bool is_prime[N];
 static int  primes[N];
 
-//#define is_origin
+#define is_origin
 
 #ifdef is_origin
 
