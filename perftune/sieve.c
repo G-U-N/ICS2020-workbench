@@ -89,20 +89,23 @@ int *sieve(int n)
 int *sieve(int n)
 {
   start=clock();
-  int *p = primes;
   memset(is_prime,1,sizeof(is_prime));
 
   for(int i = 2; i <= n; i++) {
 
     
-    if (is_prime[i])
+    if (is_prime[i]==1)
     {
-      *p++=i;
       for (int j = i + i; j <= n; j += i) {
-        is_prime[j] = false;
+        is_prime[j] = 0;
       }
     }
   }
+  int *p = primes;
+  for (int i = 2; i <= n; i++)
+    if (is_prime[i]) {
+      *p++ = i;
+    }
   *p = 0;
   total=clock()-start;
   printf("%ld",total);
