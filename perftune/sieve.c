@@ -58,6 +58,7 @@ int *seieve(int n)
     }
   }
 
+  primes[cnt]=0;
   return primes;
   
 }
