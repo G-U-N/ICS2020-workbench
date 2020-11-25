@@ -15,9 +15,8 @@ static int  primes[N];
 //欧拉筛时间，o(n).
 //埃氏筛的时间o(nloglogn)
 
-#define origin
-//#define ola
-//#define as
+//#define origin
+#define ola
 
 #ifdef origin
 
@@ -45,8 +44,6 @@ int *sieve(int n) {
   printf("%ld",total);
   return primes;
 }
-
-
 
 #endif
 
