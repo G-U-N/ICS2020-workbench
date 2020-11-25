@@ -52,7 +52,10 @@ int *sieve(int n) {
 int *sieve(int n)
 {
   start=clock();
-  memset(is_prime,1,n+n+n+n);
+  for (int i=2;i<=n;i++)
+  {
+    is_prime[i]=1;
+  }
   int cnt=0;
 
   for (int i=2;i<=n;i++)
