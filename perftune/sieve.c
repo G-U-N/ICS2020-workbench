@@ -16,7 +16,7 @@ static int  primes[N];
 //埃氏筛的时间o(nloglogn)
 
 //#define origin
-//#define ola
+#define ola
 
 #ifdef origin
 
