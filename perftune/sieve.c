@@ -52,16 +52,16 @@ int *sieve(int n) {
 int *sieve(int n)
 {
   start=clock();
-  for (int i=2;i<=n;i++)
-  {
-    is_prime[i]=1;
-  }
-  
+//  for (int i=2;i<=n;i++)
+//  {
+//    is_prime[i]=1;
+//  }
+
   int cnt=0;
 
   for (int i=2;i<=n;i++)
   {
-    if (is_prime[i])
+    if (!is_prime[i])
     {
       primes[cnt++]=i;
     }
@@ -69,7 +69,7 @@ int *sieve(int n)
 
     for (int j=0;j<cnt && i*primes[j]<=n;j++)
     {
-      is_prime[i*primes[j]]=0;
+      is_prime[i*primes[j]]=1;
 
       if (i%primes[j]==0)
       {
