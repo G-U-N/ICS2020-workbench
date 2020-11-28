@@ -15,8 +15,9 @@ static int  primes[N];
 //欧拉筛时间，o(n).
 //埃氏筛的时间o(nloglogn)
 
-#define origin
+//#define origin
 //#define ola
+#define asmy
 
 #ifdef origin
 
@@ -46,6 +47,41 @@ int *sieve(int n) {
 }
 
 #endif
+
+
+#ifdef asmy
+
+int *sieve(int n)
+{
+  start=clock();
+  int xx=sqrt(n);
+
+  for (int i=2;i<=xx;i++)
+  {
+    if (is_prime[i]==0)
+    {
+      int yy=n/i;
+      for (int j=i;i<=yy;j++)
+      {
+        is_prime[i*j]=1;
+      }
+    }
+  }
+
+  int *p = primes;
+  for (int i = 2; i <= n; i++)
+    if (is_prime[i]) {
+      *p++ = i;
+    }
+  *p = 0;
+  total=clock()-start;
+  printf("%ld",total);
+  return primes;
+}
+
+
+#endif
+
 
 
 #ifdef ola
