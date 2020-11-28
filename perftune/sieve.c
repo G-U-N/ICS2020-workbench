@@ -51,14 +51,17 @@ int *sieve(int n) {
 
 
 #ifdef asmy
+//埃氏筛的极限优化
 int *sieve(int n)
 {
   start=clock();
-
+  
+  int *p = primes;
   for (int i=2;i*i<=n;i++)
   {
     if (is_prime[i]==0)
     {
+      *p++=i;
       int mul;
       mul=(i==2)?1:2;
       for (int j=i*i;j<=n;j=j+i*mul)
@@ -67,11 +70,6 @@ int *sieve(int n)
       }
     }
   }
-  int *p = primes;
-  for (int i = 2; i <= n; i++)
-    if (!is_prime[i]) {
-      *p++ = i;
-    }
   *p = 0;
   total=clock()-start;
   printf("%ld",total);
