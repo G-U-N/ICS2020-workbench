@@ -56,6 +56,7 @@ int *sieve(int n)
 {
   start=clock();
   int xx=sqrt(n);
+  int *p=primes;
 
   for (int i=2;i<=xx;i++)
   {
@@ -71,7 +72,7 @@ int *sieve(int n)
 
   int *p = primes;
   for (int i = 2; i <= n; i++)
-    if (is_prime[i]) {
+    if (is_prime[i]==0) {
       *p++ = i;
     }
   *p = 0;
