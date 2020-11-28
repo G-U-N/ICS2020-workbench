@@ -2,8 +2,8 @@
 #include <string.h>
 #include <assert.h>
 #include <stdio.h>
-#include <math.h>
 #include <time.h>
+#include <math.h>
 
 clock_t start,total;
 
