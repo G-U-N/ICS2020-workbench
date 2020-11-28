@@ -16,9 +16,9 @@ static int  primes[N];
 //欧拉筛时间，o(n).
 //埃氏筛的时间o(nloglogn)
 
-#define origin
+//#define origin
 //#define ola
-//#define asmy
+#define asmy
 
 #ifdef origin
 
@@ -62,7 +62,8 @@ int *sieve(int n)
     {
       //int mul;
       //mul=(i==2)?0:1;
-      for (int j=i*i;j<=n;j=j+(i<<1))
+      int k=i*i;
+      for (int j=k;j<=n;j=j+(i<<1))
       {
         is_prime[j]=1;
       }
