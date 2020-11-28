@@ -16,9 +16,9 @@ static int  primes[N];
 //欧拉筛时间，o(n).
 //埃氏筛的时间o(nloglogn)
 
-#define origin
+//#define origin
 //#define ola
-//#define asmy
+#define asmy
 
 #ifdef origin
 
@@ -69,7 +69,7 @@ int *sieve(int n)
     }
   }
   int *p = primes;
-  p[0]=2;
+  *p++=2;
   for (int i = 3; i <= n; i+=2)
     if (is_prime[i]==0) {
       *p++ = i;
