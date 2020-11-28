@@ -55,7 +55,7 @@ int *sieve(int n) {
 int *sieve(int n)
 {
   start=clock();
-  int xx=sqrt(n);
+  int xx=math.sqrt(n);
 
   for (int i=2;i<=xx;i++)
   {
