@@ -69,8 +69,7 @@ int *sieve(int n)
     }
   }
   int *p = primes;
-  *p++=2;
-  for (int i = 3; i <= n; i+=2)
+  for (int i = 2; i <= n; i++)
     if (is_prime[i]==0) {
       *p++ = i;
     }
