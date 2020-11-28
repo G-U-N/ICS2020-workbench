@@ -51,27 +51,25 @@ int *sieve(int n) {
 
 
 #ifdef asmy
-
 int *sieve(int n)
 {
   start=clock();
-  int xx=math.sqrt(n);
 
-  for (int i=2;i<=xx;i++)
+  for (int i=2;i*i<=n;i++)
   {
     if (is_prime[i]==0)
     {
-      int yy=n/i;
-      for (int j=i;i<=yy;j++)
+      int mul;
+      mul=(i==2)?1:2;
+      for (int j=i*i;j<=n;j=j+i*mul)
       {
-        is_prime[i*j]=1;
+        is_prime[j]=1;
       }
     }
   }
-
   int *p = primes;
   for (int i = 2; i <= n; i++)
-    if (is_prime[i]==0) {
+    if (!is_prime[i]) {
       *p++ = i;
     }
   *p = 0;
@@ -79,7 +77,6 @@ int *sieve(int n)
   printf("%ld",total);
   return primes;
 }
-
 
 #endif
 
