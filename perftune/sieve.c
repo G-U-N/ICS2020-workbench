@@ -54,7 +54,7 @@ int *sieve(int n) {
 //埃氏筛的极限优化
 int *sieve(int n)
 {
-  start=clock();
+//  start=clock();
 
   
   for (int i=3;i*i<=n;i+=2)
@@ -79,8 +79,8 @@ int *sieve(int n)
   printf("%ld",total);
   return primes;
 
-  total=clock()-start;
-  printf("%ld",total);
+//  total=clock()-start;
+//  printf("%ld",total);
   return primes;
 }
 
