@@ -56,9 +56,9 @@ int *sieve(int n)
 {
   start=clock();
 
-  int nn;
-  for (nn=0;nn*nn<=n;nn++);
-  for (int i=3;i<=nn;i+=2)
+  //int nn;
+  //for (nn=0;nn*nn<=n;nn++);
+  for (int i=3;i*i<=n;i+=2)
   {
     if (is_prime[i]==0)
     {
