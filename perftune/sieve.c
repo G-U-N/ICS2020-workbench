@@ -62,9 +62,9 @@ int *sieve(int n)
     if (is_prime[i]==0)
     {
       *p++=i;
-      //int mul;
-      //mul=(i==2)?1:2;
-      for (int j=i*i;j<=n;j=j+i)
+      int mul;
+      mul=(i==2)?0:1;
+      for (int j=i*i;j<=n;j=j+i<<mul)
       {
         is_prime[j]=1;
       }
