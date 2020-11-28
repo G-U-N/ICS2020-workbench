@@ -16,9 +16,9 @@ static int  primes[N];
 //欧拉筛时间，o(n).
 //埃氏筛的时间o(nloglogn)
 
-#define origin
+//#define origin
 //#define ola
-//#define asmy
+#define asmy
 
 #ifdef origin
 
@@ -54,7 +54,7 @@ int *sieve(int n) {
 //埃氏筛的极限优化
 int *sieve(int n)
 {
-//  start=clock();
+  start=clock();
 
   
   for (int i=3;i*i<=n;i+=2)
@@ -75,8 +75,8 @@ int *sieve(int n)
       *p++ = i;
     }
   *p = 0;
-  //total=clock()-start;
-  //printf("%ld",total);
+  total=clock()-start;
+  printf("%ld",total);
   return primes;
 }
 
