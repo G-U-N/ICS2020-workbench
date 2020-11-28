@@ -55,14 +55,14 @@ int *sieve(int n) {
 int *sieve(int n)
 {
   start=clock();
+
   
-  for (int i=2;i*i<=n;i++)
+  for (int i=3;i*i<=n;i+=2)
   {
     if (is_prime[i]==0)
     {
-      int mul;
-      mul=(i==2)?0:1;
-      for (int j=i*i;j<=n;j=j+(i<<mul))
+
+      for (int j=i*i;j<=n;j=j+(i<<1))
       {
         is_prime[j]=1;
       }
