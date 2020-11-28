@@ -75,12 +75,8 @@ int *sieve(int n)
       *p++ = i;
     }
   *p = 0;
-  total=clock()-start;
-  printf("%ld",total);
-  return primes;
-
-//  total=clock()-start;
-//  printf("%ld",total);
+  //total=clock()-start;
+  //printf("%ld",total);
   return primes;
 }
 
