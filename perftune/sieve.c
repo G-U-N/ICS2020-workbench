@@ -2,10 +2,10 @@
 #include <string.h>
 #include <assert.h>
 #include <stdio.h>
-#include <time.h>
-#include <math.h>
+//#include <time.h>
+//#include <math.h>
 
-clock_t start,total;
+//clock_t start,total;
 
 #define N 10000000
 
@@ -54,7 +54,7 @@ int *sieve(int n) {
 //埃氏筛的极限优化
 int *sieve(int n)
 {
-  start=clock();
+  //start=clock();
 
   //int nn;
   //for (nn=0;nn*nn<=n;nn++);
@@ -76,8 +76,8 @@ int *sieve(int n)
       *p++ = i;
     }
   *p = 0;
-  total=clock()-start;
-  printf("%ld",total);
+  //total=clock()-start;
+  //printf("%ld",total);
   return primes;
 }
 
