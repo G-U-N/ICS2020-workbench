@@ -24,7 +24,7 @@ static int  primes[N];
 
 int *sieve(int n) {
   assert(n + 1 < N);
-  start=clock();
+  //start=clock();
   for (int i = 0; i <= n; i++)
     is_prime[i] = true;
 
@@ -42,8 +42,8 @@ int *sieve(int n) {
       *p++ = i;
     }
   *p = 0;
-  total=clock()-start;
-  printf("%ld",total);
+  //total=clock()-start;
+  //printf("%ld",total);
   return primes;
 }
 
