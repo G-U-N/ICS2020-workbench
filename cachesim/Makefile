@@ -1,5 +1,5 @@
 NAME := $(shell basename $(PWD))
-export TASK := Lab4
+export MODULE := Lab4
 all: $(NAME)-64
 
 include ../Makefile
