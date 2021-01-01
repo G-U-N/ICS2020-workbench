@@ -24,7 +24,7 @@ void cycle_increase(int n);
 typedef struct 
 {
     uint8_t data[BLOCK_SIZE];
-    uint8_t tag;
+    uint32_t tag;
     bool valid;
     bool dirty;
 }Cache;
