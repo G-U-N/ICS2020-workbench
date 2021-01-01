@@ -17,12 +17,11 @@ void cycle_increase(int n) { cycle_cnt += n; }
 
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
-
   //assign
   // uint8_t block_addr = addr&63;
   // uint8_t group_id   = (addr>>6)&63;
   // uint8_t tag        = (addr>>12)&255;
-
+  return 0;
 
   
 }
