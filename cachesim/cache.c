@@ -23,16 +23,17 @@ void cycle_increase(int n) { cycle_cnt += n; }
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
-  uint32_t block_addr = addr&(63);
-  uint32_t group_id   = (addr>>6)&(CACHE_GROUP_NUM-1);
-  uint32_t tag = addr>>(6+CACHE_GROUP_WIDTH);
-
+  printf("\033[40;31 start cache read!\033[0m\n");
+  uint32_t block_addr = addr&(BLOCK_SIZE-1);
+  uint32_t group_id   = (addr>>BLOCK_WIDTH)&(CACHE_GROUP_NUM-1);
+  uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
+  uint32_t block_num  = addr>>(BLOCK_WIDTH);
 
   uint32_t ret;
 
   for (int i=0;i<CACHE_LINE_NUM;i++)
   {
-    if (cache[group_id][i].valid==1 && cache[group_id][i].tag==tag)
+    if (cache[group_id][i].valid && cache[group_id][i].tag==tag)
     {
       hit_num++;
       ret=cache[group_id][i].data[addr%CACHE_GROUP_NUM];
@@ -41,9 +42,25 @@ uint32_t cache_read(uintptr_t addr) {
   }
 
   miss_num++;
+  for (int i=0;i<CACHE_LINE_NUM;i++)
+  {
+    if (cache[group_id][i].valid==false)
+    {
+      mem_read(block_num,cache[group_id][i].data);
+      cache[group_id][i].valid=true;
+      cache[group_id][i].tag=tag;
+      ret= cache[group_id][i].data[addr%BLOCK_SIZE];
+      return ret;
+    }
+  }
 
+  int line = rand()%CACHE_LINE_NUM;
+  mem_read(block_num,cache[group_id][line].data);
+  cache[group_id][line].valid=true;
+  cache[group_id][line].tag=tag;
+  ret = cache[group_id][line].data[addr%BLOCK_SIZE];
 
-  return 0;
+  return ret;
 
 
   
