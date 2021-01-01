@@ -22,7 +22,7 @@ uint32_t cache_read(uintptr_t addr) {
   uint8_t group_id   = (addr>>6)&63;
   uint8_t tag        = (addr>>12)&255;
 
-
+  return 0;
 
 
   
