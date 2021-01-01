@@ -22,7 +22,7 @@ uint32_t cache_read(uintptr_t addr) {
   uint32_t group_id   = (addr>>6)&(CACHE_GROUP_NUM-1);
   int tmp=0;
   for (int i =1 ; i < = CACHE_GROUP_NUM ;i>>2) tmp++; 
-  print("%d",tmp);
+  printf("%d",tmp);
   uint32_t tag = (addr>>12);
 
   return 0;
