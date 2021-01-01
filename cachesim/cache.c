@@ -18,6 +18,7 @@ void cycle_increase(int n) { cycle_cnt += n; }
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
+  printf("hello\n");
   uint32_t block_addr = addr&(63);
   uint32_t group_id   = (addr>>6)&(CACHE_GROUP_NUM-1);
   int tmp=0;
