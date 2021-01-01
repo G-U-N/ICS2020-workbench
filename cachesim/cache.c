@@ -37,6 +37,7 @@ uint32_t cache_read(uintptr_t addr) {
     {
       hit_num++;
       ret=cache[group_id][i].data[addr%CACHE_GROUP_NUM];
+      printf("hello1\n");
       return ret;
     }
   }
@@ -50,6 +51,7 @@ uint32_t cache_read(uintptr_t addr) {
       cache[group_id][i].valid=true;
       cache[group_id][i].tag=tag;
       ret= cache[group_id][i].data[addr%BLOCK_SIZE];
+      printf("hello2\n");
       return ret;
     }
   }
@@ -59,7 +61,7 @@ uint32_t cache_read(uintptr_t addr) {
   cache[group_id][line].valid=true;
   cache[group_id][line].tag=tag;
   ret = cache[group_id][line].data[addr%BLOCK_SIZE];
-
+  printf("hello3\n");
   return ret;
 
 
