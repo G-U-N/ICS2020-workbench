@@ -8,6 +8,11 @@ static uint64_t cycle_cnt = 0;
 //in fact we cana get a much larger cache to make it avilable.
 static int CACHE_LINE_NUM;
 static int CACHE_GROUP_NUM;
+static int CACHE_GROUP_WIDTH=0;
+
+static int hit_num=0;
+static int miss_num=0;
+
 
 static Cache cache[MAX_GROUP_NUM][MAX_LINE_NUM];
 
@@ -18,14 +23,25 @@ void cycle_increase(int n) { cycle_cnt += n; }
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
-  printf("hello\n");
   uint32_t block_addr = addr&(63);
   uint32_t group_id   = (addr>>6)&(CACHE_GROUP_NUM-1);
-  int tmp=0;
-  printf("CACHE_GROUP_NUM=%d",CACHE_GROUP_NUM);
-  for (int i =1 ; i <CACHE_GROUP_NUM ;i<<=1) tmp++; 
-  printf("tmp=%d\n",tmp);
-  uint32_t tag = (addr>>12);
+  uint32_t tag = addr>>(6+CACHE_GROUP_WIDTH);
+
+
+  uint32_t ret;
+
+  for (int i=0;i<CACHE_LINE_NUM;i++)
+  {
+    if (cache[group_id][i].valid==1 && cache[group_id][i].tag==tag)
+    {
+      hit_num++;
+      ret=cache[group_id][i].data[addr%CACHE_GROUP_NUM];
+      return ret;
+    }
+  }
+
+  miss_num++;
+
 
   return 0;
 
@@ -43,6 +59,7 @@ void init_cache(int total_size_width, int associativity_width) {
 
   CACHE_LINE_NUM=(1<<associativity_width);
   CACHE_GROUP_NUM=((1<<total_size_width)/BLOCK_SIZE)/CACHE_LINE_NUM;
+  for (int i =1 ; i <CACHE_GROUP_NUM ;i<<=1) CACHE_GROUP_WIDTH++; 
   assert(CACHE_LINE_NUM*BLOCK_SIZE*CACHE_GROUP_NUM==(1<<total_size_width));
   assert(CACHE_GROUP_NUM<=MAX_GROUP_NUM);
   assert(CACHE_LINE_NUM<=MAX_LINE_NUM);
