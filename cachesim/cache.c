@@ -18,10 +18,12 @@ void cycle_increase(int n) { cycle_cnt += n; }
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
-  // uint8_t block_addr = addr&63;
-  // uint8_t group_id   = (addr>>6)&63;
-  // uint8_t tag        = (addr>>12)&255;
-  return 0;
+  uint8_t block_addr = addr&63;
+  uint8_t group_id   = (addr>>6)&63;
+  uint8_t tag        = (addr>>12)&255;
+
+
+
 
   
 }
@@ -39,6 +41,8 @@ void init_cache(int total_size_width, int associativity_width) {
   assert(CACHE_LINE_NUM*BLOCK_SIZE*CACHE_GROUP_NUM==(1<<total_size_width));
   assert(CACHE_GROUP_NUM<=MAX_GROUP_NUM);
   assert(CACHE_LINE_NUM<=MAX_LINE_NUM);
+  printf("%d\n",CACHE_GROUP_NUM);
+  printf("%d\n",CACHE_LINE_NUM);
   for (int i=0;i<CACHE_GROUP_NUM;i++)
   {
     for (int j=0;j<CACHE_LINE_NUM;j++)
