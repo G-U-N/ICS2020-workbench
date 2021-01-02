@@ -101,6 +101,12 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     }
   }
 
+  int line=rand()%CACHE_LINE_NUM;
+  mem_read(block_num,cache[group_id][line].data);
+  cache[group_id][line].tag=tag;
+  cache[group_id][line].data[addr%BLOCK_SIZE]=(cache[group_id][line].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+  mem_write(block_num,cache[group_id][line].data);
+  return ;
 
 }
 
