@@ -57,7 +57,7 @@ uint32_t cache_read(uintptr_t addr) {
       ret=(void *)cache[group_id][i].data+(addr%BLOCK_SIZE);
       // ret= cache[group_id][i].data[addr%BLOCK_SIZE];
       printf("\033[40;31;5m cache read find available place!,ret=%d\033[0m\n",ret);
-      return ret;
+      return *ret;
     }
   }
 
@@ -68,7 +68,7 @@ uint32_t cache_read(uintptr_t addr) {
   ret=(void *)cache[group_id][line].data+(addr%BLOCK_SIZE);
   // ret = cache[group_id][line].data[addr%BLOCK_SIZE];
   printf("\033[40;31;5m cache read replace,ret=%d\033[0m\n",ret);
-  return ret;
+  return *ret;
 
 
   
