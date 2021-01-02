@@ -19,8 +19,6 @@ typedef uint8_t bool;
 
 void cycle_increase(int n);
 
-#endif
-
 typedef struct 
 {
     uint8_t data[BLOCK_SIZE];
@@ -31,4 +29,5 @@ typedef struct
 
 #define MAX_GROUP_NUM 64
 #define MAX_LINE_NUM 4
+#endif
 
