@@ -1,4 +1,5 @@
 #include "common.h"
+#include <string.h>
 #include <inttypes.h>
 
 void mem_read(uintptr_t block_num, uint8_t *buf);
