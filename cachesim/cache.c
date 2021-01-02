@@ -56,7 +56,7 @@ uint32_t cache_read(uintptr_t addr) {
       mem_read(block_num,cache[group_id][i].data);
       cache[group_id][i].valid=true;
       cache[group_id][i].tag=tag;
-      ret=(void *)cache[group_id][i].data+(addr%BLOCK_SIZE);
+      ret=(void *)(cache[group_id][i].data+(addr%BLOCK_SIZE));
       // ret= cache[group_id][i].data[addr%BLOCK_SIZE];
       printf("\033[40;31;5m cache read find available place!,ret=%d\033[0m\n",*ret);
       return *ret;
