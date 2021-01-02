@@ -97,6 +97,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
       cache[group_id][i].tag=tag;
       cache[group_id][i].valid=true;
       cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+      mem_write(block_num,cache[group_id][i].data);
     }
   }
 
@@ -119,7 +120,7 @@ void init_cache(int total_size_width, int associativity_width) {
   {
     for (int j=0;j<CACHE_LINE_NUM;j++)
     {
-      cache[i][j].dirty=false;
+      // cache[i][j].dirty=false;
       cache[i][j].valid=false;
     }
   }

@@ -26,7 +26,7 @@ typedef struct
     uint8_t data[BLOCK_SIZE];
     uint32_t tag;
     bool valid;
-    bool dirty;
+    // bool dirty;
 }Cache;
 
 #define MAX_GROUP_NUM 128
