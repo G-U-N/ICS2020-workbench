@@ -35,18 +35,18 @@ struct trace {
 static void trace_exec(struct trace *t, bool is_check) {
   if (t->t.is_write) {
     cpu_write(t->t.addr, t->t.len, t->data);
-    printf("cpu_write,t.addr=%d,t.len=%d,t.data=%d\n",t->t.addr,t->t.len,t->data);
+    // printf("cpu_write,t.addr=%d,t.len=%d,t.data=%d\n",t->t.addr,t->t.len,t->data);
     if (is_check) {
       cpu_uncache_write(t->t.addr, t->t.len, t->data);
     }
   }
   else {
     uint32_t ret = cpu_read(t->t.addr, t->t.len);
-    printf("cpu_red,t.addr=%d,t.len=%d\n",t->t.addr,t->t.len);
+    // printf("cpu_red,t.addr=%d,t.len=%d\n",t->t.addr,t->t.len);
     if (is_check) {
       uint32_t ret_uncache = cpu_uncache_read(t->t.addr, t->t.len);
-      printf("ret=%d\n",ret);
-      printf("retreal=%d\n",ret_uncache);
+      // printf("ret=%d\n",ret);
+      // printf("retreal=%d\n",ret_uncache);
       assert(ret == ret_uncache);
     }
   }
