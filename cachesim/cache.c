@@ -128,6 +128,7 @@ void init_cache(int total_size_width, int associativity_width) {
     {
       // cache[i][j].dirty=false;
       cache[i][j].valid=false;
+      memset(cache[i][j].data,0,sizeof(cache[i][j].data));
     }
   }
   printf("\033[44;37;5m init cache success!\033[0m\n");
