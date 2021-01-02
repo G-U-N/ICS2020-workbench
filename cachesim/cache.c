@@ -41,7 +41,7 @@ uint32_t cache_read(uintptr_t addr) {
     if (cache[group_id][i].valid && cache[group_id][i].tag==tag)
     {
       hit_num++;
-      ret=(void *)(cache[group_id][i].data+(addr%BLOCK_SIZE));
+      ret=(void *)(cache[group_id][i].data+(block_addr));
       // ret=cache[group_id][i].data[addr%CACHE_GROUP_NUM];
       printf("\033[40;31;5m cache read hit!,ret=%d\033[0m\n",*ret);
       return *ret;
@@ -56,7 +56,7 @@ uint32_t cache_read(uintptr_t addr) {
       mem_read(block_num,cache[group_id][i].data);
       cache[group_id][i].valid=true;
       cache[group_id][i].tag=tag;
-      ret=(void *)(cache[group_id][i].data+(addr%BLOCK_SIZE));
+      ret=(void *)(cache[group_id][i].data+(block_addr));
       // ret= cache[group_id][i].data[addr%BLOCK_SIZE];
       printf("\033[40;31;5m cache read find available place!,ret=%d\033[0m\n",*ret);
       return *ret;
@@ -67,7 +67,7 @@ uint32_t cache_read(uintptr_t addr) {
   mem_read(block_num,cache[group_id][line].data);
   cache[group_id][line].valid=true;
   cache[group_id][line].tag=tag;
-  ret=(void *)cache[group_id][line].data+(addr%BLOCK_SIZE);
+  ret=(void *)cache[group_id][line].data+(block_addr);
   // ret = cache[group_id][line].data[addr%BLOCK_SIZE];
   printf("\033[40;31;5m cache read replace,ret=%d\033[0m\n",*ret);
   return *ret;
