@@ -26,7 +26,7 @@ void cycle_increase(int n) { cycle_cnt += n; }
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
-  printf("\033[40;31;5m start cache read!,addr=%lu\033[0m\n",addr);
+  printf("\033[40;31;5m start cache read!,addr=%u\033[0m\n",addr);
   uint32_t block_addr = addr&(BLOCK_SIZE-1);
   uint32_t group_id   = (addr>>BLOCK_WIDTH)&(CACHE_GROUP_NUM-1);
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
@@ -65,7 +65,7 @@ uint32_t cache_read(uintptr_t addr) {
   mem_read(block_num,cache[group_id][line].data);
   cache[group_id][line].valid=true;
   cache[group_id][line].tag=tag;
-  ret=cache[group_id][line].data+(addr%BLOCK_SIZE);
+  ret=(void *)cache[group_id][line].data+(addr%BLOCK_SIZE);
   // ret = cache[group_id][line].data[addr%BLOCK_SIZE];
   printf("\033[40;31;5m cache read replace,ret=%d\033[0m\n",*ret);
   return *ret;
