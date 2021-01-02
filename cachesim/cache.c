@@ -15,6 +15,8 @@ static int hit_num=0;
 static int miss_num=0;
 
 
+//big mistake: use the uint32_t data!
+
 static Cache cache[MAX_GROUP_NUM][MAX_LINE_NUM];
 
 void cycle_increase(int n) { cycle_cnt += n; }
