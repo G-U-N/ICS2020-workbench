@@ -69,7 +69,7 @@ uint32_t cache_read(uintptr_t addr) {
 }
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
-  printf("\033[40;32;5m start cache start!\033[0m\n");
+  printf("\033[40;32;5m start cache write!\033[0m\n");
   uint32_t block_addr = addr&(BLOCK_SIZE-1);
   uint32_t group_id   = (addr>>BLOCK_WIDTH)&(CACHE_GROUP_NUM-1);
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
