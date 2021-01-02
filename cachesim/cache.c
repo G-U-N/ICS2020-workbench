@@ -19,7 +19,7 @@ typedef struct
 }Cache;
 
 #define MAX_GROUP_NUM  (int)65537
-#define MAX_LINE_NUM (int)65527
+#define MAX_LINE_NUM (int)100
 static int hit_num=0;
 static int miss_num=0;
 
