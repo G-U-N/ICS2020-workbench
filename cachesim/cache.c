@@ -29,7 +29,7 @@ uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
   addr &=~0x3;
-  printf("\033[40;31;5m start cache read!,addr=%lu\033[0m\n",addr);
+  //printf("\033[40;31;5m start cache read!,addr=%lu\033[0m\n",addr);
   uint32_t block_addr = addr&(BLOCK_SIZE-1);
   uint32_t group_id   = (addr>>BLOCK_WIDTH)&(CACHE_GROUP_NUM-1);
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
@@ -44,7 +44,7 @@ uint32_t cache_read(uintptr_t addr) {
       hit_num++;
       ret=(void *)(cache[group_id][i].data+(block_addr));
       // ret=cache[group_id][i].data[addr%CACHE_GROUP_NUM];
-      printf("\033[40;31;5m cache read hit!,ret=%d\033[0m\n",*ret);
+      // printf("\033[40;31;5m cache read hit!,ret=%d\033[0m\n",*ret);
       return *ret;
     }
   }
@@ -59,7 +59,7 @@ uint32_t cache_read(uintptr_t addr) {
       cache[group_id][i].tag=tag;
       ret=(void *)(cache[group_id][i].data+(block_addr));
       // ret= cache[group_id][i].data[addr%BLOCK_SIZE];
-      printf("\033[40;31;5m cache read find available place!,ret=%d\033[0m\n",*ret);
+      // printf("\033[40;31;5m cache read find available place!,ret=%d\033[0m\n",*ret);
       return *ret;
     }
   }
@@ -70,7 +70,7 @@ uint32_t cache_read(uintptr_t addr) {
   cache[group_id][line].tag=tag;
   ret=(void *)cache[group_id][line].data+(block_addr);
   // ret = cache[group_id][line].data[addr%BLOCK_SIZE];
-  printf("\033[40;31;5m cache read replace,ret=%d\033[0m\n",*ret);
+  // printf("\033[40;31;5m cache read replace,ret=%d\033[0m\n",*ret);
   return *ret;
 
 
@@ -81,7 +81,7 @@ uint32_t cache_read(uintptr_t addr) {
 //首先实现全写法。
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   addr &=~0x3;
-  printf("\033[40;32;5m start cache write!\033[0m\n");
+  // printf("\033[40;32;5m start cache write!\033[0m\n");
   uint32_t block_addr = addr&(BLOCK_SIZE-1);
   uint32_t group_id   = (addr>>BLOCK_WIDTH)&(CACHE_GROUP_NUM-1);
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
@@ -96,7 +96,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
       uint32_t *tmp =(void *)(cache[group_id][i].data+(addr %BLOCK_SIZE));
       *tmp=(*tmp & ~wmask) | (data&wmask);
       mem_write(block_num,cache[group_id][i].data);
-      printf("hello1\n");
+      // printf("hello1\n");
       return ;
     }
   }
@@ -114,7 +114,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
       uint32_t *tmp =(void *)(cache[group_id][i].data+(addr %BLOCK_SIZE));
       *tmp=(*tmp & ~wmask) | (data&wmask);
       mem_write(block_num,cache[group_id][i].data);
-      printf("hello2\n");
+      // printf("hello2\n");
       return ;
     }
   }
@@ -126,7 +126,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t *tmp =(void *)(cache[group_id][line].data+(addr %BLOCK_SIZE));
   *tmp=(*tmp & ~wmask) | (data&wmask);
   mem_write(block_num,cache[group_id][line].data);
-  printf("hello3\n");
+  // printf("hello3\n");
   return ;
 
 }
@@ -152,7 +152,7 @@ void init_cache(int total_size_width, int associativity_width) {
       memset(cache[i][j].data,0,sizeof(cache[i][j].data));
     }
   }
-  printf("\033[44;37;5m init cache success!\033[0m\n");
+  // printf("\033[44;37;5m init cache success!\033[0m\n");
 
 }
 
