@@ -29,6 +29,6 @@ typedef struct
     // bool dirty;
 }Cache;
 
-#define MAX_GROUP_NUM 128
-#define MAX_LINE_NUM 8
+#define MAX_GROUP_NUM 64
+#define MAX_LINE_NUM 4
 
