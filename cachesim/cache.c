@@ -82,7 +82,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     if (cache[group_id][i].valid==1 && cache[group_id][i].tag==tag)
     {
       hit_num++;
-      cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|data&wmask;
+      cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data&wmask);
       mem_write(block_num,cache[group_id][i].data);
     }
   }
