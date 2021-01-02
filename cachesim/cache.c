@@ -65,7 +65,7 @@ uint32_t cache_read(uintptr_t addr) {
   mem_read(block_num,cache[group_id][line].data);
   cache[group_id][line].valid=true;
   cache[group_id][line].tag=tag;
-  ret=(void *)cache[group_id][line].data+(addr%BLOCK_SIZE);
+  ret=cache[group_id][line].data+(addr%BLOCK_SIZE);
   // ret = cache[group_id][line].data[addr%BLOCK_SIZE];
   printf("\033[40;31;5m cache read replace,ret=%d\033[0m\n",*ret);
   return *ret;
