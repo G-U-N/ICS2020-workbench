@@ -19,15 +19,15 @@ typedef uint8_t bool;
 
 void cycle_increase(int n);
 
-typedef struct 
-{
-    uint8_t data[BLOCK_SIZE];
-    uint32_t tag;
-    bool valid;
-    // bool dirty;
-}Cache;
+// typedef struct 
+// {
+//     uint8_t data[BLOCK_SIZE];
+//     uint32_t tag;
+//     bool valid;
+//     // bool dirty;
+// }Cache;
 
-#define MAX_GROUP_NUM 64
-#define MAX_LINE_NUM 4
+// #define MAX_GROUP_NUM 64
+// #define MAX_LINE_NUM 4
 #endif
 

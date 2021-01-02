@@ -11,6 +11,16 @@ static int CACHE_LINE_NUM;
 static int CACHE_GROUP_NUM;
 static int CACHE_GROUP_WIDTH=0;
 
+typedef struct 
+{
+    uint8_t data[BLOCK_SIZE];
+    uint32_t tag;
+    bool valid;
+    // bool dirty;
+}Cache;
+
+#define MAX_GROUP_NUM 64
+#define MAX_LINE_NUM 4
 static int hit_num=0;
 static int miss_num=0;
 
