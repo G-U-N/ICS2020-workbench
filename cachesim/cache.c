@@ -122,6 +122,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t *tmp =(void *)(cache[group_id][line].data+(addr %BLOCK_SIZE));
   *tmp=(*tmp & ~wmask) | (data&wmask);
   mem_write(block_num,cache[group_id][line].data);
+  printf("hello3\n");
   return ;
 
 }
