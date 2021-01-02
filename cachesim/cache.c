@@ -23,6 +23,8 @@ void cycle_increase(int n) { cycle_cnt += n; }
 
 // TODO: implement the following functions
 
+
+//随机种子设为2，甚至没有写操作，就挂了。
 uint32_t cache_read(uintptr_t addr) {
   //8,6,6先不对一般性做要求。
   //assign
@@ -32,6 +34,7 @@ uint32_t cache_read(uintptr_t addr) {
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
   uint32_t block_num  = addr>>(BLOCK_WIDTH);
   
+  printf("%d\n",BLOCK_SIZE);
   // printf("BLOCK_WIDTH+CACHE_GROUP_WIDTH=%d\n",BLOCK_WIDTH+CACHE_GROUP_WIDTH);
   uint32_t *ret;
 
