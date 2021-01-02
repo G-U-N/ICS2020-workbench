@@ -92,6 +92,8 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
       uint32_t *tmp =(void *)(cache[group_id][i].data+(addr %BLOCK_SIZE));
       *tmp=(*tmp & ~wmask) | (data&wmask);
       mem_write(block_num,cache[group_id][i].data);
+      printf("hello1\n");
+      return ;
     }
   }
 
@@ -108,6 +110,8 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
       uint32_t *tmp =(void *)(cache[group_id][i].data+(addr %BLOCK_SIZE));
       *tmp=(*tmp & ~wmask) | (data&wmask);
       mem_write(block_num,cache[group_id][i].data);
+      printf("hello2\n");
+      return ;
     }
   }
 
