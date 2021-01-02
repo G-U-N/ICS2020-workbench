@@ -68,6 +68,8 @@ uint32_t cache_read(uintptr_t addr) {
   
 }
 
+
+//首先实现全写法。
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   printf("\033[40;32;5m start cache write!\033[0m\n");
   uint32_t block_addr = addr&(BLOCK_SIZE-1);
@@ -80,16 +82,29 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     if (cache[group_id][i].valid==1 && cache[group_id][i].tag==tag)
     {
       hit_num++;
-      cache[group_id][i].data[addr%BLOCK_SIZE]=data&wmask;
+      cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|data&wmask;
       mem_write(block_num,cache[group_id][i].data);
     }
   }
 
+  miss_num++;
+  for (int i=0;i<CACHE_LINE_NUM;i++)
+  {
+    if (cache[group_id][i].valid==false)
+    {
+      mem_read(block_num,cache[group_id][i].data);
+
+      cache[group_id][i].tag=tag;
+      cache[group_id][i].valid=true;
+      cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+    }
+  }
+
+
 }
 
 
-//init CACHE_GROUP_NUM=64;
-//CACHE_LINE_NUM=8;
+//create an cache able for any type of cache!
 void init_cache(int total_size_width, int associativity_width) {
 
   CACHE_LINE_NUM=(1<<associativity_width);
