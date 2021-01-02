@@ -18,8 +18,8 @@ typedef struct
     // bool dirty;
 }Cache;
 
-#define MAX_GROUP_NUM  (int)1e9
-#define MAX_LINE_NUM (int)1e9
+#define MAX_GROUP_NUM  (int)65537
+#define MAX_LINE_NUM (int)65527
 static int hit_num=0;
 static int miss_num=0;
 
