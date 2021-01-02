@@ -149,8 +149,8 @@ void init_cache(int total_size_width, int associativity_width) {
   CACHE_GROUP_NUM=((1<<total_size_width)/BLOCK_SIZE)/CACHE_LINE_NUM;
   for (int i =1 ; i <CACHE_GROUP_NUM ;i<<=1) CACHE_GROUP_WIDTH++; 
   assert(CACHE_LINE_NUM*BLOCK_SIZE*CACHE_GROUP_NUM==(1<<total_size_width));
-  assert(CACHE_GROUP_NUM<=MAX_GROUP_NUM);
-  assert(CACHE_LINE_NUM<=MAX_LINE_NUM);
+  // assert(CACHE_GROUP_NUM<=MAX_GROUP_NUM);
+  // assert(CACHE_LINE_NUM<=MAX_LINE_NUM);
 
 
   for (int i=0;i<CACHE_GROUP_NUM;i++)
