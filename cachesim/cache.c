@@ -1,7 +1,7 @@
 #include "common.h"
 #include <string.h>
 #include <inttypes.h>
-
+#define int long long
 void mem_read(uintptr_t block_num, uint8_t *buf);
 void mem_write(uintptr_t block_num, const uint8_t *buf);
 
