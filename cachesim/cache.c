@@ -31,7 +31,8 @@ uint32_t cache_read(uintptr_t addr) {
   uint32_t group_id   = (addr>>BLOCK_WIDTH)&(CACHE_GROUP_NUM-1);
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
   uint32_t block_num  = addr>>(BLOCK_WIDTH);
-
+  
+  printf("BLOCK_WIDTH+CACHE_GROUP_WIDTH=%d\n",BLOCK_WIDTH+CACHE_GROUP_WIDTH);
   uint32_t *ret;
 
   for (int i=0;i<CACHE_LINE_NUM;i++)
