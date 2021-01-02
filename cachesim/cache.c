@@ -88,7 +88,9 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
     if (cache[group_id][i].valid==1 && cache[group_id][i].tag==tag)
     {
       hit_num++;
-      cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data&wmask);
+      // cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data&wmask);
+      uint32_t *tmp =(void *)(cache[group_id][i].data+(addr %BLOCK_SIZE));
+      *tmp=(*tmp & ~wmask) | (data&wmask);
       mem_write(block_num,cache[group_id][i].data);
     }
   }
@@ -102,7 +104,9 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
 
       cache[group_id][i].tag=tag;
       cache[group_id][i].valid=true;
-      cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+      // cache[group_id][i].data[addr%BLOCK_SIZE]=(cache[group_id][i].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+      uint32_t *tmp =(void *)(cache[group_id][i].data+(addr %BLOCK_SIZE));
+      *tmp=(*tmp & ~wmask) | (data&wmask);
       mem_write(block_num,cache[group_id][i].data);
     }
   }
@@ -110,7 +114,9 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   int line=rand()%CACHE_LINE_NUM;
   mem_read(block_num,cache[group_id][line].data);
   cache[group_id][line].tag=tag;
-  cache[group_id][line].data[addr%BLOCK_SIZE]=(cache[group_id][line].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+  // cache[group_id][line].data[addr%BLOCK_SIZE]=(cache[group_id][line].data[addr%BLOCK_SIZE]&~wmask)|(data & wmask);
+  uint32_t *tmp =(void *)(cache[group_id][line].data+(addr %BLOCK_SIZE));
+  *tmp=(*tmp & ~wmask) | (data&wmask);
   mem_write(block_num,cache[group_id][line].data);
   return ;
 
