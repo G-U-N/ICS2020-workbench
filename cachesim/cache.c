@@ -75,6 +75,16 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t tag = addr>>(BLOCK_WIDTH+CACHE_GROUP_WIDTH);
   uint32_t block_num  = addr>>(BLOCK_WIDTH);
 
+  for (int i=0;i<CACHE_LINE_NUM;i++)
+  {
+    if (cache[group_id][i].valid==1 && cache[group_id][i].tag==tag)
+    {
+      hit_num++;
+      cache[group_id][i].data[addr%BLOCK_SIZE]=data&wmask;
+      mem_write(block_num,cache[group_id][i].data);
+    }
+  }
+
 }
 
 
